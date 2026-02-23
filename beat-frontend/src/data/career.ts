@@ -1,0 +1,172 @@
+﻿import { Opportunity, Benefit, Life } from '../types';
+
+export const opportunities: Opportunity[] = [
+  {
+    id: 1648,
+    name: 'Internship',
+    desc: 'BEAT Technologies is working towards making a deep, large-scale, and institutionalized impact on the quality and equity of education in India, along with related development areas. BEAT is known for innovative technology seeks a self-directed IT intern with a passion for technology, collaboration, and creative problem-solving. The intern will actively contribute to meaningful projects and work closely with a mentor and with senior leadership.',
+    location: 'Lucknow',
+    startDate: new Date('07-10-2022'),
+    duration: 6,
+    stipend: 6000,
+    lastDate: new Date('09-09-2022'),
+    skills: ['HTML, CSS', 'JavaScript', 'Angular', 'Java', 'SQL'],
+    qualifications: [
+      'Final year/Passout(2020, 2021) students of BCA, MCA, B.Tech, M.Tech, BSc. IT or Msc. IT',
+      'Minimum GPA of 3.0',
+    ],
+    requirements: [
+      'Familiar with HTML, CSS, JavaScript, Angular, Java, or JavaScript',
+      'Strong verbal and written communication',
+      'Excellent analytical and problem-solving skills',
+      'Ability to work well in teams',
+      'Strong work ethic and attention to detail',
+    ],
+    benefits: [
+      'Gain hands-on experience in a Full Stack Developer position',
+      'Shadowing and mentorship experiences with knowledgeable professionals',
+      'Flexible schedule for students',
+      'Compensation available',
+      'Dynamic and collaborative working culture',
+    ],
+    responsibilities: [
+      'Support us with our digitalization efforts',
+      'Work on assigned specific project covering one or more functional areas',
+      'Meet and liaise with members of the IT department',
+      'Improving the UI to make it appealing to the website visitors',
+      'Developing a fully functional product using HTML, CSS, JavaScript, Angular, Java, and SQL',
+    ],
+  },
+  {
+    id: 7213,
+    name: 'Java Full Stack Developer',
+    desc: 'BEAT Technologies is working towards making a deep, large-scale, and institutionalized impact on the quality and equity of education in India, along with related development areas. BEAT is known for innovative technology seeks a self-directed developer with a passion for technology, collaboration, and creative problem-solving.',
+    location: 'Lucknow',
+    startDate: new Date('10-07-2022'),
+    duration: 6,
+    stipend: 22000,
+    lastDate: new Date('10-09-2022'),
+    skills: ['HTML, CSS', 'JavaScript', 'Angular', 'Java', 'Spring Boot', 'SQL'],
+    qualifications: [
+      'At least 2 years working professionally as Full Stack Developer',
+      'Experience with Angular and Spring Boot',
+      'At least intermediate English',
+    ],
+    requirements: [
+      'Hands on experience on HTML, CSS, JavaScript, Angular, Java, Spring Boot and SQL',
+      'Strong verbal and written communication',
+      'Excellent analytical and problem-solving skills',
+      'Ability to work well in teams',
+      'Strong work ethic and attention to detail',
+    ],
+    benefits: [
+      'Long term project',
+      'Shadowing and mentorship experiences with knowledgeable professionals',
+      'Part-time remote work with flexible working hours',
+      'Unlimited PTO, paid holidays',
+      'Dynamic and collaborative working culture',
+    ],
+    responsibilities: [
+      'Support us with our digitalization efforts',
+      'Working on Full-stack application (back-end and front-end work included)',
+      'Working on Angular and Spring Boot',
+      'Writing efficient, reusable, and reliable Angular/Spring Boot code',
+      'Participating in code reviews',
+      'Contributing to creating a culture of writing excellent software',
+    ],
+  },
+  {
+    id: 6525,
+    name: 'Python Developer',
+    desc: 'BEAT Technologies is working towards making a deep, large-scale, and institutionalized impact on the quality and equity of education in India, along with related development areas. BEAT is known for innovative technology seeks a self-directed developer with a passion for technology.',
+    location: 'Lucknow',
+    startDate: new Date('10-07-2022'),
+    duration: 6,
+    stipend: 22000,
+    lastDate: new Date('10-09-2022'),
+    skills: ['Java', 'Python', 'PyCharm', 'SQL'],
+    qualifications: [
+      'At least 2 years working professionally',
+      'Strong knowledge of object-oriented designing, coding, and testing patterns',
+      'Basic knowledge of server-side python framework',
+      'Experience with building Big Data solutions and software development in Python',
+      'Exposure to a cloud computing service such as AWS',
+      'At least intermediate English',
+    ],
+    requirements: [
+      'Hands on experience on Java, Python, PyCharm and SQL',
+      'Strong verbal and written communication',
+      'Excellent analytical and problem-solving skills',
+      'Ability to work well in teams',
+      'Strong work ethic and attention to detail',
+    ],
+    benefits: [
+      'Long term project',
+      'Shadowing and mentorship experiences with knowledgeable professionals',
+      'Part-time remote work with flexible working hours',
+      'Unlimited PTO, paid holidays',
+      'Dynamic and collaborative working culture',
+    ],
+    responsibilities: [
+      'Support us with our digitalization efforts',
+      'Working on Full-stack application (back-end and front-end work included)',
+      'Working on PyCharm/Python',
+      'Writing efficient, reusable, and reliable Python code',
+      'Participating in code reviews',
+      'Contributing to creating a culture of writing excellent software',
+    ],
+  },
+];
+
+export const pleasureList: Benefit[] = [
+  {
+    id: 101,
+    icon: 'mail',
+    heading: 'Reply detection',
+    desc: 'If you get a reply, further follow-ups are automatically stopped.',
+    imgUrl: 'assets/images/career/career1.jpg',
+  },
+  {
+    id: 102,
+    icon: 'calendar',
+    heading: 'Follow-up',
+    desc: 'Just set a number of days that you want send a follow-up.',
+    imgUrl: 'assets/images/career/career2.jpg',
+  },
+  {
+    id: 103,
+    icon: 'send',
+    heading: 'Cold email',
+    desc: 'Unlimited number of prospects daily with personalized emails.',
+    imgUrl: 'assets/images/career/career3.jpg',
+  },
+  {
+    id: 104,
+    icon: 'thumbs-up',
+    heading: 'Teamwork',
+    desc: "You and your teammates won't address the same person twice.",
+    imgUrl: 'assets/images/career/career4.jpg',
+  },
+];
+
+export const lifes: Life[] = [
+  {
+    id: 101,
+    heading: 'What is Beat?',
+    desc: 'Beat is a B2B SaaS company that provides competitive intelligence services to Brands, App Developers, SDK Sales Teams, and Investors (Public and Private). The most successful companies in the world use our platform to inform their mobile strategy.',
+    imgUrl: 'assets/images/career/career5.jpg',
+  },
+  {
+    id: 102,
+    heading: 'What is it like to work here?',
+    desc: 'Beat is a B2B SaaS company that provides competitive intelligence to Brands, App Developers, SDK Sales Teams, and Investors (Public and Private). The most successful companies in the world use our platform to inform their mobile strategy.',
+    imgUrl: 'assets/images/career/kite.png',
+  },
+  {
+    id: 103,
+    heading: 'Our Values',
+    desc: 'Beat is a B2B SaaS company that provides competitive intelligence to Brands, App Developers, SDK Sales Teams, and Investors (Public and Private). The most successful companies in the world use our platform to inform their mobile strategy.',
+    imgUrl: 'assets/images/career/value.png',
+  },
+];
+

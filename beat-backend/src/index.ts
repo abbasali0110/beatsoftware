@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 const startServer = async () => {
   try {
     await prisma.$connect();
-    console.log("Successfully connected to PostgreSQL via Prisma.");
+    console.log("Successfully connected to MySQL via Prisma.");
 
     app.listen(PORT, () => {
       console.log(`🚀 Rental API is running on http://localhost:${PORT}`);

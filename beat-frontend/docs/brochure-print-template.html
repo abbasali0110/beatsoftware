@@ -1,0 +1,562 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beat Corporate Brochure - Print Template</title>
+  <style>
+    :root {
+      --charcoal: #1a1f2e;
+      --charcoal-dark: #0f1420;
+      --crimson: #dc143c;
+      --surface: #f4f6fa;
+      --text: #1f2937;
+      --muted: #475569;
+      --page-width: 210mm;
+      --page-height: 297mm;
+      --page-padding: 14mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #e5e7eb;
+      color: var(--text);
+      font-family: "Segoe UI", "Tahoma", "Arial", sans-serif;
+      line-height: 1.5;
+    }
+
+    .sheet {
+      width: var(--page-width);
+      min-height: var(--page-height);
+      margin: 10mm auto;
+      background: #fff;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .sheet:last-child { page-break-after: auto; }
+
+    .content {
+      padding: var(--page-padding);
+      padding-bottom: 26mm;
+    }
+
+    .cover {
+      color: #fff;
+      background:
+        linear-gradient(130deg, rgba(15, 20, 32, 0.95), rgba(26, 31, 46, 0.92)),
+        radial-gradient(circle at 85% 12%, rgba(220, 20, 60, 0.4), transparent 34%),
+        linear-gradient(180deg, #0f1420, #1a1f2e);
+    }
+
+    .cover .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: var(--page-height);
+      padding-bottom: var(--page-padding);
+    }
+
+    .kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 8px;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+
+    .cover h1 {
+      color: #fff;
+      font-size: 42px;
+      max-width: 160mm;
+      margin-bottom: 14px;
+    }
+
+    .cover p.lead {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 17px;
+      max-width: 150mm;
+      margin: 0 0 22px;
+    }
+
+    .brand-strip {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0 0 10px; color: var(--muted); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10mm;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6mm;
+    }
+
+    .card {
+      border: 1px solid #dbe1eb;
+      border-radius: 10px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .card h3 { color: var(--charcoal); margin-bottom: 6px; }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .list li {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5mm;
+      margin-top: 8px;
+    }
+
+    .metric {
+      background: var(--surface);
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .metric .value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .metric .label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, var(--crimson), transparent);
+      margin: 8px 0 14px;
+      border-radius: 999px;
+    }
+
+    .footer-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid #dbe1eb;
+      background: #fff;
+      padding: 7px var(--page-padding);
+      font-size: 10px;
+      color: #475569;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-bar .country {
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #dbe1eb;
+      padding: 8px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .table th {
+      background: var(--surface);
+      color: var(--charcoal);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .cta {
+      border: 1px solid #e2e8f0;
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .cta strong { color: var(--charcoal); }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .sheet {
+        margin: 0;
+        box-shadow: none;
+      }
+      a[href]:after { content: ""; }
+    }
+  </style>
+</head>
+<body>
+  <!-- PAGE 1: COVER -->
+  <section class="sheet cover">
+    <div class="content">
+      <span class="brand-strip">Beat Software Technologies</span>
+      <h1>Enterprise Software and Digital Transformation Partner</h1>
+      <p class="lead">Corporate profile brochure for clients in India and the Kingdom of Saudi Arabia.</p>
+      <p class="lead">Structured delivery. Governance-led execution. Measurable business outcomes.</p>
+    </div>
+    <div class="footer-bar" style="background: rgba(255,255,255,0.08); border-top-color: rgba(255,255,255,0.2); color: #fff;">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: COMPANY OVERVIEW -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Company Overview</span>
+      <h2>Corporate Profile</h2>
+      <div class="section-divider"></div>
+      <p>Beat Software Technologies is an enterprise software organization committed to delivering reliable digital systems, business-critical applications, and long-term technology partnership models.</p>
+      <p>Our operating model combines technical depth with executive accountability to support mission-critical transformation initiatives.</p>
+
+      <div class="two-col" style="margin-top: 8px;">
+        <div class="card">
+          <h3>Vision</h3>
+          <p>To be recognized as a trusted enterprise technology partner in India and Saudi Arabia, delivering future-ready digital platforms that strengthen organizational performance.</p>
+        </div>
+        <div class="card">
+          <h3>Mission</h3>
+          <p>To provide scalable, secure, and governance-aligned software services that enable clients to modernize operations and accelerate sustainable growth.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 14px;">Core Values</h3>
+      <ul class="list">
+        <li>Integrity in execution and communication</li>
+        <li>Quality and accountability in every deliverable</li>
+        <li>Long-term partnership mindset</li>
+        <li>Innovation with practical business value</li>
+        <li>Respect for regional business culture and compliance norms</li>
+      </ul>
+
+      <div class="metric-grid">
+        <div class="metric"><div class="value">500+</div><div class="label">Engagements</div></div>
+        <div class="metric"><div class="value">1000+</div><div class="label">Projects</div></div>
+        <div class="metric"><div class="value">10+</div><div class="label">Years</div></div>
+        <div class="metric"><div class="value">2</div><div class="label">Regions</div></div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: LEADERSHIP AND GOVERNANCE -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Leadership and Governance</span>
+      <h2>Executive Delivery Commitment</h2>
+      <div class="section-divider"></div>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>Leadership Statement</h3>
+          <p>Our leadership team is committed to transparent governance, disciplined execution, and long-term client trust through measurable outcomes.</p>
+        </div>
+        <div class="card">
+          <h3>Governance Positioning</h3>
+          <p>Structured milestone planning, executive reporting, quality controls, and security-conscious engineering standards across delivery lifecycle.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 14px;">Compliance and Quality Practices</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Corporate Practice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Delivery Management</td>
+            <td>Phase-wise planning, review gates, and milestone approvals</td>
+          </tr>
+          <tr>
+            <td>Quality Assurance</td>
+            <td>Testing controls, code review discipline, release readiness checks</td>
+          </tr>
+          <tr>
+            <td>Security</td>
+            <td>Security-first implementation mindset and controlled access practices</td>
+          </tr>
+          <tr>
+            <td>Client Communication</td>
+            <td>Executive updates, escalation paths, and documented governance cadence</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 4: SERVICE PORTFOLIO -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Services</span>
+      <h2>Service Portfolio</h2>
+      <div class="section-divider"></div>
+      <div class="three-col">
+        <div class="card"><h3>Enterprise Software Development</h3><p>Scalable business applications and platform modernization.</p></div>
+        <div class="card"><h3>Cloud and DevOps</h3><p>Cloud architecture, release automation, and reliability operations.</p></div>
+        <div class="card"><h3>Microservices Architecture</h3><p>Resilient modular systems for high-availability enterprise use cases.</p></div>
+        <div class="card"><h3>API and Integration Services</h3><p>Secure integration across ERP, operations, and third-party ecosystems.</p></div>
+        <div class="card"><h3>SaaS Development</h3><p>Subscription-ready product engineering for recurring value delivery.</p></div>
+        <div class="card"><h3>Maintenance and AMC</h3><p>Long-term support with performance, security, and uptime stewardship.</p></div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 5: SOLUTIONS -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Solutions</span>
+      <h2>Business Solution Portfolio</h2>
+      <div class="section-divider"></div>
+      <div class="three-col">
+        <div class="card"><h3>Travel and Booking Systems</h3><p>End-to-end reservation, itinerary, and service orchestration workflows.</p></div>
+        <div class="card"><h3>Fleet Management</h3><p>Vehicle operations, dispatch visibility, and performance tracking.</p></div>
+        <div class="card"><h3>Restaurant Management</h3><p>Order lifecycle, kitchen operations, and branch-level monitoring.</p></div>
+        <div class="card"><h3>HR and Manpower ERP</h3><p>Workforce planning, attendance, payroll, and compliance records.</p></div>
+        <div class="card"><h3>Educational ERP</h3><p>Student lifecycle, administration, communication, and reporting.</p></div>
+        <div class="card"><h3>Construction ERP</h3><p>Project governance, cost tracking, vendor controls, and execution views.</p></div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 6: INDUSTRIES -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Industries</span>
+      <h2>Industries Served</h2>
+      <div class="section-divider"></div>
+
+      <table class="table">
+        <thead>
+          <tr><th>Industry</th><th>Execution Focus</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Travel and Tourism</td><td>Booking automation, customer journey visibility, service integrations</td></tr>
+          <tr><td>Construction</td><td>Project controls, site operations, vendor and cost governance</td></tr>
+          <tr><td>Education</td><td>Institutional administration and digital learning workflows</td></tr>
+          <tr><td>Healthcare</td><td>Patient process digitization and operational reporting support</td></tr>
+          <tr><td>IT Services</td><td>Delivery platforms, resource management, and productivity systems</td></tr>
+          <tr><td>Government</td><td>Process standardization, transparency support, and scalable service systems</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 7: TECHNOLOGIES -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Technologies</span>
+      <h2>Technology Capability Stack</h2>
+      <div class="section-divider"></div>
+
+      <div class="three-col">
+        <div class="card"><h3>Frontend</h3><p>Modern UI engineering with responsive design and accessibility standards.</p></div>
+        <div class="card"><h3>Backend</h3><p>API-led architecture and secure business logic implementation.</p></div>
+        <div class="card"><h3>Cloud</h3><p>Scalable infrastructure models for resilient enterprise operations.</p></div>
+        <div class="card"><h3>DevOps</h3><p>CI/CD pipelines, release automation, and platform observability.</p></div>
+        <div class="card"><h3>Messaging Systems</h3><p>Event-driven communication and asynchronous process integration.</p></div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 8: CASE STUDIES -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Portfolio and Case Studies</span>
+      <h2>Representative Case Study Structure</h2>
+      <div class="section-divider"></div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <h3>Case Study 01 - Enterprise Operations Platform</h3>
+        <p><strong>Challenge:</strong> Fragmented workflows and delayed reporting.</p>
+        <p><strong>Solution:</strong> Unified platform with role-based dashboards and integrated data services.</p>
+        <p><strong>Outcome:</strong> Improved process visibility, faster decision cycles, and controlled operations.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 8px;">
+        <h3>Case Study 02 - Mobility and Fleet Transformation</h3>
+        <p><strong>Challenge:</strong> Limited dispatch control and inconsistent operational monitoring.</p>
+        <p><strong>Solution:</strong> Fleet tracking, route intelligence, and service-level monitoring modules.</p>
+        <p><strong>Outcome:</strong> Better utilization and improved field execution reliability.</p>
+      </div>
+
+      <div class="card">
+        <h3>Case Study 03 - Multi-Branch Service Business ERP</h3>
+        <p><strong>Challenge:</strong> Manual controls and delayed branch-level data consolidation.</p>
+        <p><strong>Solution:</strong> Centralized ERP with branch governance and reporting automation.</p>
+        <p><strong>Outcome:</strong> Stronger compliance posture and improved management visibility.</p>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 9: GLOBAL PRESENCE -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Global Presence</span>
+      <h2>India Office and Saudi Operations</h2>
+      <div class="section-divider"></div>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>India Development Center</h3>
+          <p><strong>Beat Software Technologies</strong></p>
+          <ul class="list">
+            <li>Full-stack engineering team</li>
+            <li>R&D and product innovation</li>
+          </ul>
+          <p><strong>Address:</strong> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013</p>
+          <p><strong>Mobile:</strong> 9867721712, 8799346695</p>
+        </div>
+
+        <div class="card">
+          <h3>Saudi Client Operations</h3>
+          <ul class="list">
+            <li>Enterprise client handling</li>
+            <li>Corporate mobility solutions</li>
+            <li>On-site project coordination</li>
+            <li>Arabic support capability</li>
+          </ul>
+          <p><strong>Address:</strong> 13th street, Makkah road, Al khobar - 34623</p>
+          <p><strong>Mobile:</strong> +966553776285</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+
+  <!-- PAGE 10: CONTACT AND ENGAGEMENT -->
+  <section class="sheet">
+    <div class="content">
+      <span class="kicker">Engagement and Contact</span>
+      <h2>How to Engage with Beat</h2>
+      <div class="section-divider"></div>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>Engagement Model</h3>
+          <ol class="list">
+            <li>Discovery and executive alignment</li>
+            <li>Scope definition and solution architecture</li>
+            <li>Implementation with governance checkpoints</li>
+            <li>Support, optimization, and AMC lifecycle</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3>Corporate Contact</h3>
+          <p><strong>India Office</strong><br />26/107, 3rd floor, LBS Nagar, Bangalore - 560013<br />9867721712, 8799346695</p>
+          <p><strong>Saudi Operations</strong><br />13th street, Makkah road, Al khobar - 34623<br />+966553776285</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <strong>Call to Action:</strong> Request a corporate consultation to discuss your software roadmap, governance model, and implementation priorities.
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div><span class="country">India:</span> 26/107, 3rd floor, LBS Nagar, Bangalore - 560013 | 9867721712, 8799346695</div>
+      <div><span class="country">Saudi:</span> 13th street, Makkah road, Al khobar - 34623 | +966553776285</div>
+    </div>
+  </section>
+</body>
+</html>

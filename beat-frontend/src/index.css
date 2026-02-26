@@ -67,19 +67,19 @@
   }
 
   .btn-sm {
-    @apply btn px-4 py-2 text-xs;
+    @apply btn px-3 py-1.5 text-xs;
   }
 
   .btn-md {
-    @apply btn px-6 py-3 text-sm;
+    @apply btn px-5 py-2 text-xs;
   }
 
   .btn-lg {
-    @apply btn px-7 py-3.5 text-sm sm:text-base;
+    @apply btn px-6 py-2.5 text-sm;
   }
 
   .btn-primary {
-    @apply bg-crimson-gradient text-white px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:shadow-glow-hover flex items-center justify-center gap-2;
+    @apply bg-crimson-gradient text-white px-5 py-2 rounded-lg font-bold transition-all duration-300 hover:shadow-glow-hover inline-flex items-center justify-center gap-2;
   }
 
   .btn-secondary {
@@ -87,7 +87,7 @@
   }
 
   .btn-ghost {
-    @apply border border-white/10 hover:bg-white/5 text-white px-6 py-3 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2;
+    @apply border border-white/10 hover:bg-white/5 text-white px-5 py-2 rounded-lg font-bold transition-all duration-300 inline-flex items-center justify-center gap-2;
   }
 
   .btn-ghost-crimson {

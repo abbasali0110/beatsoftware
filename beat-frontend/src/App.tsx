@@ -14,6 +14,7 @@ import Career from './pages/Career';
 import Apply from './pages/Career/Apply';
 import Contact from './pages/Contact';
 import Join from './pages/Join';
+import ResourceDocumentPage from './pages/Resources';
 import NotFound from './pages/NotFound';
 
 function Layout() {
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/career" element={<Career />} />
           <Route path="/career/apply" element={<Apply />} />
           <Route path="/join" element={<Join />} />
+          <Route path="/resources/:resourceSlug" element={<ResourceDocumentPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

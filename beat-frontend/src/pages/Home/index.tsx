@@ -7,12 +7,14 @@ import {
   BadgeCheck,
   Briefcase,
   Check,
+  CheckCircle2,
   Clock,
   Cloud,
   Code2,
   Cog,
   Download,
   GitBranch,
+  Globe,
   Globe2,
   Handshake,
   Landmark,
@@ -315,7 +317,7 @@ function HeroSection() {
 
             <div className="relative z-10 h-full flex items-end pb-14 sm:pb-16">
               <div className="w-full pl-8 sm:pl-14 lg:pl-20 xl:pl-28 pr-4 sm:pr-6 lg:pr-8">
-                <div className="max-w-3xl">
+                <div className="max-w-4xl">
                   <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-6 text-xs font-semibold tracking-[0.13em] text-white bg-white/10 border border-white/20 backdrop-blur-sm">
                     <Sparkles size={14} className="text-crimson" />
                     {slide.subheading ?? "Enterprise Software Partner"}
@@ -345,10 +347,27 @@ function HeroSection() {
                     </Link>
                   </div>
 
-                  <p className="carousel-cta flex items-center gap-1.5 text-white/40 text-xs mt-5">
-                    <span>🔒</span>
-                    NDA signed before session one · No commitment required
-                  </p>
+                  {/* 5. Trust Signals (Matches Footer Security Vibe) */}
+                  <div className="flex flex-wrap items-center gap-x-8 gap-y-3 mt-8 pt-8 border-t border-white/10">
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck size={14} className="text-crimson" />
+                      <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">
+                        NDA Guaranteed
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 size={14} className="text-crimson" />
+                      <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">
+                        ZATCA Compliant
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Globe size={14} className="text-crimson" />
+                      <span className="text-white/40 text-[11px] font-bold uppercase tracking-wider">
+                        India & KSA Ops
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -476,7 +495,7 @@ function CorporateOverview() {
             decision. Every delivery is measured against the outcome we agreed
             on in week one.
           </p>
-          <Link to="/contact" className="btn-ghost-crimson">
+          <Link to="/resources/delivery-standards-brief" className="btn-ghost-crimson">
             <Download size={15} />
             Download Our Delivery Standards Brief
           </Link>
@@ -553,7 +572,7 @@ function StrategicConsultingSection() {
           <Link to="/contact" className="btn-primary">
             Book a Zero-Cost Discovery Workshop <ArrowRight size={16} />
           </Link>
-          <Link to="/contact" className="btn-outline">
+          <Link to="/resources/pre-build-audit-guide" className="btn-outline">
             <Download size={15} />
             Download: How We Run a Pre-Build Audit
           </Link>
@@ -737,7 +756,7 @@ function SolutionsSnapshot() {
           <Link to="/portfolio" className="btn-primary">
             See How We Cut Fleet OpEx by 40% <ArrowRight size={16} />
           </Link>
-          <Link to="/contact" className="btn-outline">
+          <Link to="/resources/domain-solution-profiles" className="btn-outline">
             <Download size={15} />
             Download Our Domain Solution Profiles
           </Link>
@@ -837,7 +856,7 @@ function SocialProofSection() {
           <Link to="/portfolio" className="btn-ghost-crimson">
             View All Case Studies <ArrowRight size={16} />
           </Link>
-          <Link to="/contact" className="btn-outline">
+          <Link to="/resources/impact-report-2024" className="btn-outline">
             <Download size={15} />
             Download Our Impact Report 2024
           </Link>
@@ -947,7 +966,7 @@ function TechStackSection() {
                 team capability, time-to-market, and long-term maintainability.
               </p>
             </div>
-            <Link to="/contact" className="btn-outline shrink-0">
+            <Link to="/resources/tech-stack-playbook" className="btn-outline shrink-0">
               <Download size={15} />
               Download Our Tech Stack Playbook
             </Link>
@@ -1025,7 +1044,8 @@ function TestimonialsSection() {
 function GlobalPresenceSection() {
   const presenceData = [
     {
-      flag: "🇮🇳",
+      flagSrc: "assets/images/flags/in.png",
+      flagAlt: "India flag",
       country: "India",
       role: "Engineering Center of Excellence",
       points: [
@@ -1036,7 +1056,8 @@ function GlobalPresenceSection() {
       ],
     },
     {
-      flag: "🇸🇦",
+      flagSrc: "assets/images/flags/sa.webp",
+      flagAlt: "Saudi Arabia flag",
       country: "Saudi Arabia",
       role: "In-Country Delivery & Stakeholder Management",
       points: [
@@ -1068,10 +1089,14 @@ function GlobalPresenceSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {presenceData.map(({ flag, country, role, points }) => (
+          {presenceData.map(({ flagSrc, flagAlt, country, role, points }) => (
             <div key={country} className="card p-7">
               <div className="flex items-start gap-3 mb-5">
-                <span className="text-3xl">{flag}</span>
+                <img
+                  src={flagSrc}
+                  alt={flagAlt}
+                  className="h-6 w-9 rounded-sm object-cover border border-surface-200 shrink-0 mt-0.5"
+                />
                 <div>
                   <p className="font-bold text-charcoal text-lg">{country}</p>
                   <p className="text-crimson text-xs font-semibold uppercase tracking-wider leading-snug">
@@ -1098,7 +1123,7 @@ function GlobalPresenceSection() {
           <Link to="/contact" className="btn-primary">
             Book a Meeting at Our Riyadh Office <ArrowRight size={16} />
           </Link>
-          <Link to="/contact" className="btn-outline">
+          <Link to="/resources/india-ksa-delivery-model" className="btn-outline">
             <Download size={15} />
             Download India–KSA Delivery Model
           </Link>

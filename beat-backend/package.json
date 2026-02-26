@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "build": "npm run build:backend && npm run build:frontend && node scripts/copy-frontend.mjs",
+    "build:backend": "tsc",
+    "build:frontend": "npm --prefix ..\\beat-frontend run build",
     "start": "node dist/index.js",
     "lint": "biome lint .",
     "format": "biome format . --write",

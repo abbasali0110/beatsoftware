@@ -187,7 +187,7 @@ function IndustriesHero() {
       className="relative text-white border-b border-white/10 bg-cover bg-center min-h-[520px] sm:min-h-[600px] flex items-center"
       style={{ backgroundImage: "url('assets/images/industry/automobile.avif')" }}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/50 to-black/35" />
+      <div className="absolute inset-0 image-overlay" />
       <div className="container-xl py-20 sm:py-28 relative z-10">
         <div className="max-w-4xl bg-charcoal/28 backdrop-blur-[1px] rounded-2xl p-4 sm:p-6">
           <span className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] mb-3 bg-crimson/85 px-3 py-1 rounded-full">

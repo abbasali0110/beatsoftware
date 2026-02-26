@@ -77,8 +77,13 @@ export interface Testimonial {
 
 export interface CarouselSlide {
   imgUrl: string;
+  subheading?: string;
   heading: string;
   desc: string;
+  ctaText?: string;
+  ctaLink?: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryLink?: string;
   headingColor: string;
   descColor: string;
 }

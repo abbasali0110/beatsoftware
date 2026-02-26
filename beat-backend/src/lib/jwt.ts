@@ -1,7 +1,8 @@
+import type { SignOptions } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
-import { env } from "../config/env.js";
+import { config } from "../config/config.js";
 
-const ACCESS_TOKEN_EXPIRES_IN = "15m";
+const ACCESS_TOKEN_EXPIRES_IN = config.JWT_EXPIRES_IN as SignOptions["expiresIn"];
 
 export interface JwtPayload {
   id: number;
@@ -9,11 +10,11 @@ export interface JwtPayload {
 }
 
 export const signAccessToken = (payload: JwtPayload) => {
-  return jwt.sign(payload, env.JWT_SECRET, {
+  return jwt.sign(payload, config.JWT_SECRET, {
     expiresIn: ACCESS_TOKEN_EXPIRES_IN,
   });
 };
 
 export const verifyToken = (token: string): JwtPayload => {
-  return jwt.verify(token, env.JWT_SECRET) as JwtPayload;
+  return jwt.verify(token, config.JWT_SECRET) as JwtPayload;
 };

@@ -1,8 +1,11 @@
 import type { Request, Response } from "express";
+import type { SignOptions } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { prisma } from "../lib/prisma.js";
-import { env } from "../config/env.js";
+import { config } from "../config/config.js";
+
+const jwtExpiresIn = config.JWT_EXPIRES_IN as SignOptions["expiresIn"];
 
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -25,8 +28,8 @@ export const login = async (req: Request, res: Response) => {
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) return res.status(401).json({ message: "Invalid credentials" });
 
-  const token = jwt.sign({ id: user.id }, env.JWT_SECRET, {
-    expiresIn: "1d",
+  const token = jwt.sign({ id: user.id }, config.JWT_SECRET, {
+    expiresIn: jwtExpiresIn,
   });
 
   res.json({ token });

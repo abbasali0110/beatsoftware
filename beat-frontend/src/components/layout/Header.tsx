@@ -156,23 +156,25 @@ export default function Header() {
                 </button>
 
                 {moreOpen && (
-                  <div className="absolute top-[110%] right-0 w-64 rounded-xl border border-surface-200 bg-white shadow-hover py-2 z-50">
-                    {secondaryLinks.map((link) => (
-                      <NavLink
-                        key={link.to}
-                        to={link.to}
-                        onClick={() => setMoreOpen(false)}
-                        className={({ isActive }) =>
-                          `block px-4 py-2 text-sm transition-colors ${
-                            isActive
-                              ? "text-crimson bg-crimson/10 font-semibold"
-                              : "text-surface-700 hover:bg-surface-50 hover:text-charcoal"
-                          }`
-                        }
-                      >
-                        {link.label}
-                      </NavLink>
-                    ))}
+                  <div className="absolute top-full right-0 w-64 pt-2 z-50">
+                    <div className="rounded-xl border border-surface-200 bg-white shadow-hover py-2">
+                      {secondaryLinks.map((link) => (
+                        <NavLink
+                          key={link.to}
+                          to={link.to}
+                          onClick={() => setMoreOpen(false)}
+                          className={({ isActive }) =>
+                            `block px-4 py-2 text-sm transition-colors ${
+                              isActive
+                                ? "text-crimson bg-crimson/10 font-semibold"
+                                : "text-surface-700 hover:bg-surface-50 hover:text-charcoal"
+                            }`
+                          }
+                        >
+                          {link.label}
+                        </NavLink>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

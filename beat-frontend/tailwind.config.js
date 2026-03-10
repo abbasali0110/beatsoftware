@@ -14,6 +14,10 @@ export default {
           dark: '#9B0E2A',
           light: '#FF2E5B',
         },
+        brand: {
+          navy: '#0b1222',
+          panel: '#16213a',
+        },
         charcoal: {
           DEFAULT: '#1A1F2E',
           dark: '#0A0A0B', // Deep black-grey for backgrounds

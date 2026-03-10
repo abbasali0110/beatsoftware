@@ -1,5 +1,9 @@
 {
   "[css]": {
     "editor.formatOnSave": false
-  }
+  },
+  
+  "model": "claude-opus-4-6"
+
+
 }

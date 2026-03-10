@@ -181,6 +181,20 @@
   }
 }
 
+@layer utilities {
+  .industry-card-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+  }
+  
+  .text-glow-crimson {
+    text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+  }
+}
+
 .brand-hero-bg {
   background: radial-gradient(circle at 20% 20%, rgba(220, 20, 60, 0.22) 0%, rgba(26, 31, 46, 0.3) 32%, rgba(26, 31, 46, 0) 62%);
 }
@@ -330,4 +344,73 @@
 
 .marquee-wrap:hover .marquee-track {
   animation-play-state: paused;
+}
+
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s infinite alternate ease-in-out;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s infinite ease-in-out;
+}
+
+@keyframes industry-hero-enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes industry-hero-enter-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.industry-hero-badge,
+.industry-hero-title,
+.industry-hero-desc,
+.industry-hero-trust,
+.industry-hero-panel {
+  opacity: 0;
+}
+
+.industry-hero-badge {
+  animation: industry-hero-enter-up 0.55s ease-out 0.05s forwards;
+}
+
+.industry-hero-title {
+  animation: industry-hero-enter-up 0.65s ease-out 0.15s forwards;
+}
+
+.industry-hero-desc {
+  animation: industry-hero-enter-up 0.65s ease-out 0.28s forwards;
+}
+
+.industry-hero-trust {
+  animation: industry-hero-enter-up 0.65s ease-out 0.42s forwards;
+}
+
+.industry-hero-panel {
+  animation: industry-hero-enter-right 0.7s ease-out 0.28s forwards;
 }

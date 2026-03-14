@@ -79,10 +79,10 @@ function AcademyBanner({ register, handleSubmit, errors, isSubmitting, onSubmit 
           {/* Left — Heading */}
           <div className="flex-1 max-w-xl">
             <span className="section-tag">Beat Academy</span>
-            <h1 className="text-5xl sm:text-6xl font-black text-white leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-[0.94] mb-5">
               Best<br /><span className="text-crimson">Tech Company</span>
             </h1>
-            <p className="text-surface-300 text-lg leading-relaxed mb-6">
+            <p className="text-surface-300 text-base sm:text-lg leading-relaxed mb-6">
               Learn industry-relevant skills with top tech veterans.
               Join thousands of students building their future with Beat.
             </p>

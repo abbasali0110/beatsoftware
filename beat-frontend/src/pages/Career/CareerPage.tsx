@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Target,
   Users,
+  X,
 } from "lucide-react";
 import CareerHeroSection from "./components/CareerHeroSection";
 
@@ -22,6 +23,8 @@ interface Role {
   location: string;
   type: string;
   market: string;
+  description: string;
+  requirements: string[];
 }
 
 function useReveal(threshold = 0.15) {
@@ -97,6 +100,13 @@ const roles: Role[] = [
     location: "Hyderabad / Remote",
     type: "Full-time",
     market: "India",
+    description: "We are looking for a Senior Full-Stack Engineer to lead the development of our enterprise platforms. You will be responsible for designing, building, and maintaining robust applications that scale.",
+    requirements: [
+      "5+ years of experience with React, Node.js, and TypeScript",
+      "Strong understanding of microservices architecture",
+      "Experience with cloud platforms (AWS or Azure)",
+      "Excellent problem-solving and communication skills"
+    ]
   },
   {
     title: "Platform Architect",
@@ -104,6 +114,13 @@ const roles: Role[] = [
     location: "Riyadh",
     type: "Full-time",
     market: "KSA",
+    description: "As a Platform Architect, you will design the technical foundation for our core products, ensuring scalability, security, and high performance across distributed systems.",
+    requirements: [
+      "10+ years in software engineering with 3+ years in architecture",
+      "Deep expertise in distributed systems and cloud-native patterns",
+      "Strong background in enterprise security and compliance",
+      "Ability to influence technical direction and mentor senior engineers"
+    ]
   },
   {
     title: "Compliance Systems Analyst",
@@ -111,6 +128,13 @@ const roles: Role[] = [
     location: "Riyadh",
     type: "Full-time",
     market: "KSA",
+    description: "Join our Delivery team to ensure our systems meet rigorous enterprise and regulatory standards. You will analyze requirements, audit processes, and drive compliance initiatives.",
+    requirements: [
+      "3+ years experience as a systems or compliance analyst",
+      "Familiarity with financial or healthcare regulatory standards",
+      "Strong documentation and analytical skills",
+      "Experience working closely with engineering teams"
+    ]
   },
   {
     title: "React Frontend Engineer",
@@ -118,6 +142,13 @@ const roles: Role[] = [
     location: "Hyderabad",
     type: "Full-time",
     market: "India",
+    description: "We are seeking a React Frontend Engineer to build intuitive, high-performance user interfaces for our enterprise applications, focusing on user experience and accessibility.",
+    requirements: [
+      "3+ years of specialized experience in React and TypeScript",
+      "Deep understanding of state management and performance optimization",
+      "Experience with modern CSS and component libraries",
+      "Passion for pixel-perfect design and fluid animations"
+    ]
   },
   {
     title: "DevOps / Cloud Engineer",
@@ -125,6 +156,13 @@ const roles: Role[] = [
     location: "Remote",
     type: "Full-time",
     market: "Both",
+    description: "The DevOps/Cloud Engineer will optimize our CI/CD pipelines, manage infrastructure as code, and ensure maximum reliability and availability of our cloud environments.",
+    requirements: [
+      "Experience with Docker, Kubernetes, and Terraform",
+      "Strong background in AWS or Azure administration",
+      "Proficiency in scripting languages (Python, Bash)",
+      "Understanding of security best practices in cloud environments"
+    ]
   },
   {
     title: "Enterprise Delivery Manager",
@@ -132,6 +170,13 @@ const roles: Role[] = [
     location: "Riyadh",
     type: "Full-time",
     market: "KSA",
+    description: "Lead the successful delivery of complex enterprise projects. You will act as the bridge between business stakeholders and engineering teams to ensure on-time, high-quality outcomes.",
+    requirements: [
+      "7+ years of experience in technical project or program management",
+      "Proven track record of delivering enterprise-scale software",
+      "Strong agile methodology experience",
+      "Excellent stakeholder management and communication skills"
+    ]
   },
   {
     title: "UI/UX Designer - Enterprise",
@@ -139,6 +184,13 @@ const roles: Role[] = [
     location: "Hyderabad / Remote",
     type: "Full-time",
     market: "India",
+    description: "Shape the user experience for complex enterprise tools. You will conduct user research, create wireframes, and deliver high-fidelity designs that simplify complex workflows.",
+    requirements: [
+      "4+ years of UI/UX design experience, preferably in B2B or enterprise",
+      "Expertise in Figma and prototyping tools",
+      "Strong portfolio demonstrating systems thinking",
+      "Experience collaborating with frontend engineering teams"
+    ]
   },
   {
     title: "Data Platform Engineer",
@@ -146,20 +198,36 @@ const roles: Role[] = [
     location: "Hyderabad",
     type: "Contract",
     market: "India",
+    description: "Build robust data pipelines and infrastructure. You will be responsible for the ingestion, storage, and processing of large-scale datasets that drive our analytics products.",
+    requirements: [
+      "Experience with data modeling and ETL pipeline development",
+      "Proficiency in SQL, Python, and big data technologies (e.g., Spark, Kafka)",
+      "Knowledge of cloud data warehouses (e.g., Snowflake, Redshift)",
+      "Understanding of data governance and security principles"
+    ]
   },
 ];
 
-const stack = [
-  "React",
-  "Node.js",
-  "TypeScript",
-  "PostgreSQL",
-  "AWS",
-  "Azure",
-  "Docker",
-  "Terraform",
-  "Redis",
-  "Kafka",
+type StackItem = {
+  name: string;
+  icon?: string;
+  Icon?: React.ElementType;
+};
+
+const stack: StackItem[] = [
+  { name: "React", icon: "/assets/images/tech/react.svg" },
+  { name: "Node.js", icon: "/assets/images/tech/nodejs.svg" },
+  { name: "TypeScript", icon: "/assets/images/tech/typescript.svg" },
+  { name: "PostgreSQL", icon: "/assets/images/tech/postgresql.svg" },
+  { name: "AWS", icon: "/assets/images/tech/aws.svg" },
+  { name: "Azure", icon: "/assets/images/tech/azure.svg" },
+  { name: "Docker", icon: "/assets/images/tech/docker.svg" },
+  { name: "Terraform", icon: "/assets/images/tech/terraform.svg" },
+  { name: "Redis", icon: "/assets/images/tech/redis.svg" },
+  { name: "Kafka", icon: "/assets/images/tech/kafka.svg" },
+  { name: "AI/ML", icon: "/assets/images/tech/aiml.svg" },
+  { name: "Cloud Integration", icon: "/assets/images/tech/cloud.svg" },
+  { name: "Data Center", icon: "/assets/images/tech/datacenter.svg" },
 ];
 
 const processSteps = [
@@ -195,6 +263,18 @@ const depts: Dept[] = [
 
 export default function CareerPage() {
   const [activeDept, setActiveDept] = useState<Dept>("All");
+  const [selectedRole, setSelectedRole] = useState<Role | null>(null);
+
+  useEffect(() => {
+    if (selectedRole) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedRole]);
 
   const whyRef = useReveal(0.12);
   const lookRef = useReveal(0.12);
@@ -244,7 +324,7 @@ export default function CareerPage() {
                   <h3 className="text-lg font-bold text-charcoal mb-2">
                     {title}
                   </h3>
-                  <p className="text-sm text-surface-500 leading-relaxed">
+                  <p className="text-base text-surface-600 leading-relaxed">
                     {desc}
                   </p>
                 </article>
@@ -306,11 +386,11 @@ export default function CareerPage() {
               <p className="text-2xs font-bold uppercase tracking-[0.2em] text-crimson mb-3">
                 Core Stack
               </p>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-3 mt-4">
                 {stack.map((tech, i) => (
                   <span
-                    key={tech}
-                    className="rounded-xl border border-surface-200 bg-surface-50 px-3.5 py-1.5 text-sm font-semibold text-surface-600 transition-all duration-300 hover:border-crimson/30 hover:-translate-y-0.5"
+                    key={tech.name}
+                    className="flex items-center gap-3 rounded-xl border border-surface-200 bg-surface-50 px-4 py-2.5 text-base font-bold text-surface-600 transition-all duration-300 hover:border-crimson/30 hover:-translate-y-0.5"
                     style={{
                       opacity: lookRef.visible ? 1 : 0,
                       transform: lookRef.visible
@@ -319,7 +399,12 @@ export default function CareerPage() {
                       transition: `all 0.45s cubic-bezier(0.16,1,0.3,1) ${260 + i * 45}ms`,
                     }}
                   >
-                    {tech}
+                    {tech.Icon ? (
+                      <tech.Icon size={24} className="text-surface-600" />
+                    ) : (
+                      <img src={tech.icon} alt={tech.name} className="w-6 h-6 object-contain" />
+                    )}
+                    <span>{tech.name}</span>
                   </span>
                 ))}
               </div>
@@ -338,7 +423,7 @@ export default function CareerPage() {
                 <p className="section-tag mb-1">Open Roles</p>
                 <h2 className="section-title mb-0">Current opportunities</h2>
               </div>
-              <p className="text-sm text-surface-500">
+              <p className="text-base font-medium text-surface-600">
                 {filteredRoles.length} positions
               </p>
             </div>
@@ -359,11 +444,11 @@ export default function CareerPage() {
               ))}
             </div>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredRoles.map((role, i) => (
                 <article
                   key={`${activeDept}-${role.title}-${role.location}`}
-                  className="card p-5 sm:p-6 hover:-translate-y-0.5"
+                  className="card p-5 sm:p-6 flex flex-col justify-between hover:-translate-y-1"
                   style={{
                     opacity: rolesRef.visible ? 1 : 0,
                     transform: rolesRef.visible
@@ -372,30 +457,36 @@ export default function CareerPage() {
                     transition: `all 0.45s cubic-bezier(0.16,1,0.3,1) ${i * 55}ms`,
                   }}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                      <h3 className="text-lg font-bold text-charcoal mb-2">
-                        {role.title}
-                      </h3>
-                      <div className="flex flex-wrap items-center gap-3 text-xs text-surface-500">
-                        <span className="inline-flex items-center gap-1.5">
-                          <MapPin size={12} className="text-crimson" />{" "}
-                          {role.location}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock size={12} className="text-crimson" />{" "}
-                          {role.type}
-                        </span>
-                        <span className="badge badge-surface">
-                          {role.market}
-                        </span>
-                      </div>
+                  <div className="mb-6">
+                    <h3 className="text-lg font-bold text-charcoal mb-3">
+                      {role.title}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-surface-600">
+                      <span className="inline-flex items-center gap-1.5">
+                        <MapPin size={14} className="text-crimson" />{" "}
+                        {role.location}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock size={14} className="text-crimson" />{" "}
+                        {role.type}
+                      </span>
+                      <span className="badge badge-surface">
+                        {role.market}
+                      </span>
                     </div>
+                  </div>
+                  <div className="flex gap-3 mt-4">
+                    <button
+                      onClick={() => setSelectedRole(role)}
+                      className="rounded-xl border border-surface-200 bg-white px-4 py-2 text-sm font-bold text-charcoal transition-all hover:bg-surface-50 hover:border-crimson hover:-translate-y-0.5 flex-1 text-center"
+                    >
+                      View Details
+                    </button>
                     <Link
                       to="/career/apply"
-                      className="btn-primary whitespace-nowrap self-start sm:self-auto"
+                      className="btn-primary flex-1 justify-center px-4 py-2"
                     >
-                      Apply Now <ArrowRight size={14} />
+                      Apply <ArrowRight size={14} />
                     </Link>
                   </div>
                 </article>
@@ -430,7 +521,7 @@ export default function CareerPage() {
                   <h3 className="text-lg font-bold text-charcoal mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-surface-500 leading-relaxed">
+                  <p className="text-base text-surface-600 leading-relaxed">
                     {step.desc}
                   </p>
                 </article>
@@ -473,6 +564,74 @@ export default function CareerPage() {
           </div>
         </div>
       </section>
+
+      {/* Job Description Modal */}
+      {selectedRole && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pb-20 sm:pb-6">
+          <div 
+            className="absolute inset-0 bg-charcoal/40 backdrop-blur-sm transition-opacity"
+            onClick={() => setSelectedRole(null)}
+          />
+          <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-xl flex flex-col max-h-[90vh] sm:max-h-[85vh] animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 sm:p-6 border-b border-surface-200 bg-surface-50 rounded-t-2xl">
+              <div>
+                <h3 className="text-xl font-bold text-charcoal">{selectedRole.title}</h3>
+                <div className="flex items-center gap-4 text-sm font-medium text-surface-600 mt-2">
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin size={14} className="text-crimson" /> {selectedRole.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock size={14} className="text-crimson" /> {selectedRole.type}
+                  </span>
+                </div>
+              </div>
+              <button 
+                onClick={() => setSelectedRole(null)}
+                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-200 text-surface-500 hover:text-charcoal transition-colors focus:outline-none"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div className="p-5 sm:p-6 overflow-y-auto min-h-[30vh]">
+              <div className="mb-6">
+                <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal mb-3">About the Role</h4>
+                <p className="text-surface-700 font-medium leading-relaxed text-base">
+                  {selectedRole.description}
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal mb-3">Requirements</h4>
+                <ul className="space-y-3">
+                  {selectedRole.requirements.map((req, i) => (
+                    <li key={i} className="flex items-start gap-2 text-surface-700 font-medium">
+                      <CheckCircle2 size={18} className="text-crimson mt-0.5 shrink-0" />
+                      <span className="text-base leading-relaxed">{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            
+            <div className="p-5 sm:p-6 border-t border-surface-200 bg-surface-50 flex justify-end gap-3 rounded-b-2xl">
+              <button
+                onClick={() => setSelectedRole(null)}
+                className="rounded-xl border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-surface-600 hover:bg-surface-50 transition-colors"
+              >
+                Close
+              </button>
+              <Link
+                to="/career/apply"
+                className="btn-primary"
+                onClick={() => setSelectedRole(null)}
+              >
+                Apply Now <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

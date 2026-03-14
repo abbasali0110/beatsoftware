@@ -339,10 +339,10 @@ export default function Portfolio() {
     active === "All" ? projects : projects.filter((p) => p.sector === active);
 
   return (
-    <div className="bg-white">
+    <div className="bg-charcoal-dark">
       <PortfolioHeroSection />
 
-      <section className="bg-charcoal-dark border-t border-white/10">
+      <section className="bg-[#0d0d0e] border-t border-white/[0.07]">
         <div className="container-xl">
           <div className="grid grid-cols-2 sm:grid-cols-4">
             {stats.map(({ value, label }, i) => (
@@ -363,7 +363,7 @@ export default function Portfolio() {
       </section>
 
       {/* ── FILTER + GRID ── */}
-      <section id="portfolio-grid" className="section-pad">
+      <section id="portfolio-grid" className="section-pad bg-charcoal-dark">
         <div className="container-xl">
           {/* Filter bar */}
           <div className="flex flex-wrap gap-2 mb-10">

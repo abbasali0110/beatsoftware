@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation } from 'react-router-dom';
 import { applyForJob } from '../../services/api';
@@ -11,6 +12,10 @@ interface ApplyFormData {
 export default function Apply() {
   const location = useLocation();
   const { opportunityId, opportunityName } = (location.state as { opportunityId?: number; opportunityName?: string }) || {};
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const {
     register,

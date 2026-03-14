@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
@@ -6,6 +6,109 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════
+   BEAT SOFTWARE — DUAL-THEME COLOR SYSTEM
+   Usage: add class="dark" to <html> to activate dark theme.
+   All semantic tokens are available as Tailwind utilities:
+     bg-theme-base, text-theme-primary, border-theme, etc.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Backgrounds ── */
+  --bs-bg-base:         #F7F9FC;   /* page root */
+  --bs-bg-raised:       #FFFFFF;   /* cards, modals */
+  --bs-bg-overlay:      #EFF2F9;   /* panel sections */
+  --bs-bg-elevated:     #E4EAF5;   /* hover / selected states */
+  --bs-bg-subtle:       #D8E0EF;   /* subtle section dividers */
+
+  /* ── Borders ── */
+  --bs-border:          rgba(11,18,34,0.10);
+  --bs-border-muted:    rgba(11,18,34,0.06);
+  --bs-border-accent:   rgba(220,20,60,0.18);
+
+  /* ── Text ── */
+  --bs-text-primary:    #0B1222;
+  --bs-text-secondary:  #2D3748;
+  --bs-text-muted:      #64748B;
+  --bs-text-disabled:   #9CA3AF;
+  --bs-text-accent:     #B8102F;   /* crimson darkened for light-bg contrast */
+
+  /* ── Brand (same in both themes) ── */
+  --bs-primary:         #DC143C;
+  --bs-primary-dark:    #9B0E2A;
+  --bs-primary-light:   #FF2E5B;
+
+  /* ── Status ── */
+  --bs-success:         #16A34A;   /* darkened for light bg */
+  --bs-warning:         #D97706;
+  --bs-info:            #0284C7;
+  --bs-destructive:     #DC2626;
+
+  /* ── Market Tags (light) ── */
+  --bs-ksa-text:        #92400E;
+  --bs-ksa-bg:          rgba(251,191,36,0.12);
+  --bs-ksa-border:      rgba(180,130,0,0.22);
+  --bs-india-text:      #0C4A6E;
+  --bs-india-bg:        rgba(56,189,248,0.10);
+  --bs-india-border:    rgba(3,105,161,0.22);
+  --bs-both-text:       #14532D;
+  --bs-both-bg:         rgba(34,197,94,0.10);
+  --bs-both-border:     rgba(22,163,74,0.22);
+
+  /* ── Shadows ── */
+  --bs-shadow-card:     0 2px 12px rgba(11,18,34,0.08), 0 1px 3px rgba(11,18,34,0.06);
+  --bs-shadow-elevated: 0 8px 32px rgba(11,18,34,0.12), 0 2px 8px rgba(11,18,34,0.08);
+  --bs-shadow-glow:     0 0 24px rgba(220,20,60,0.22);
+}
+
+.dark {
+  /* ── Backgrounds ── */
+  --bs-bg-base:         #070709;
+  --bs-bg-raised:       #0D0D10;
+  --bs-bg-overlay:      #111520;
+  --bs-bg-elevated:     #1A1F2E;
+  --bs-bg-subtle:       #212840;
+
+  /* ── Borders ── */
+  --bs-border:          rgba(255,255,255,0.08);
+  --bs-border-muted:    rgba(255,255,255,0.05);
+  --bs-border-accent:   rgba(220,20,60,0.25);
+
+  /* ── Text ── */
+  --bs-text-primary:    #FFFFFF;
+  --bs-text-secondary:  rgba(255,255,255,0.65);
+  --bs-text-muted:      rgba(255,255,255,0.40);
+  --bs-text-disabled:   rgba(255,255,255,0.22);
+  --bs-text-accent:     #DC143C;
+
+  /* ── Brand ── */
+  --bs-primary:         #DC143C;
+  --bs-primary-dark:    #9B0E2A;
+  --bs-primary-light:   #FF2E5B;
+
+  /* ── Status ── */
+  --bs-success:         #22C55E;
+  --bs-warning:         #F59E0B;
+  --bs-info:            #38BDF8;
+  --bs-destructive:     #EF4444;
+
+  /* ── Market Tags (dark) ── */
+  --bs-ksa-text:        rgba(252,211,77,0.80);
+  --bs-ksa-bg:          rgba(251,191,36,0.07);
+  --bs-ksa-border:      rgba(251,191,36,0.18);
+  --bs-india-text:      rgba(125,211,252,0.80);
+  --bs-india-bg:        rgba(56,189,248,0.07);
+  --bs-india-border:    rgba(56,189,248,0.18);
+  --bs-both-text:       rgba(110,231,183,0.80);
+  --bs-both-bg:         rgba(52,211,153,0.07);
+  --bs-both-border:     rgba(52,211,153,0.18);
+
+  /* ── Shadows ── */
+  --bs-shadow-card:     0 4px 24px rgba(0,0,0,0.40), 0 1px 4px rgba(0,0,0,0.30);
+  --bs-shadow-elevated: 0 16px 56px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.40);
+  --bs-shadow-glow:     0 0 32px rgba(220,20,60,0.35);
+}
 
 @layer base {
 
@@ -17,12 +120,17 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 16px;
+    /* Responsive root font-size scaling */
+    font-size: clamp(14px, 1.2vw + 10px, 16px);
   }
 
   body {
-    @apply font-sans text-surface-700 bg-white antialiased;
+    @apply font-sans bg-white text-base sm:text-lg;
+    color: #1a1a1b; /* Strong dark base text */
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -140,7 +248,7 @@
   }
 
   .section-desc {
-    @apply text-surface-500 text-base sm:text-lg leading-relaxed;
+    @apply text-surface-600 text-base sm:text-lg leading-relaxed;
   }
 
   .page-banner {
@@ -192,6 +300,10 @@
   
   .text-glow-crimson {
     text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+  }
+
+  .font-display {
+    @apply font-['Space_Grotesk',_sans-serif];
   }
 }
 

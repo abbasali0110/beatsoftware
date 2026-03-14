@@ -61,10 +61,10 @@ function JoinHero() {
           {/* Left */}
           <div>
             <span className="section-tag">Join Us</span>
-            <h1 className="text-5xl sm:text-6xl font-black text-white leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-[0.94] mb-5">
               Join the Beat and<br />help shape a<br /><span className="text-crimson">better future</span>
             </h1>
-            <p className="text-surface-300 text-lg leading-relaxed mb-4">
+            <p className="text-surface-300 text-base sm:text-lg leading-relaxed mb-4">
               We believe that progress happens by bringing together people from all walks of life who
               have the drive and the influence to make a positive change.
             </p>

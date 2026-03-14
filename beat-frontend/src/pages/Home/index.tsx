@@ -393,17 +393,17 @@ function ClientLogoStrip() {
               key={`${type}-${region}`}
               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-50 border border-surface-200 hover:border-crimson/30 transition-colors duration-200"
             >
-              <span className="text-xs text-surface-500 font-medium">
+              <span className="text-sm text-surface-600 font-semibold">
                 {type}
               </span>
               <span className="w-px h-3 bg-surface-200" />
-              <span className="text-xs font-bold text-crimson/70">
+              <span className="text-sm font-bold text-crimson">
                 {region}
               </span>
             </div>
           ))}
         </div>
-        <p className="text-center text-surface-300 text-xs">
+        <p className="text-center text-surface-500 text-sm font-medium">
           Client names withheld under signed NDAs · Reference calls available on
           request
         </p>
@@ -447,16 +447,16 @@ function HighlightsBar() {
                   <p className="text-2xl sm:text-3xl font-extrabold text-white leading-none mb-0.5">
                     {value}
                   </p>
-                  <p className="text-white/80 text-xs font-semibold mb-0.5">
+                  <p className="text-white/90 text-sm font-bold mb-0.5">
                     {label}
                   </p>
-                  <p className="text-surface-400 text-xs">{sub}</p>
+                  <p className="text-surface-300 text-sm">{sub}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <p className="text-center text-surface-600 text-xs py-2 border-t border-white/5 italic">
+        <p className="text-center text-surface-400 text-sm py-3 border-t border-white/5 font-medium italic">
           Verified through signed client NDAs and delivery governance records.
           Auditable on request.
         </p>
@@ -485,9 +485,9 @@ function CorporateOverview() {
             and leave you to figure out why adoption is low, performance is
             degraded, and the next feature costs triple the estimate.
           </p>
-          <p className="text-surface-500 text-base leading-relaxed mb-6">
+          <p className="text-surface-700 text-lg font-medium leading-relaxed mb-6">
             We built Beat around a single operating principle:{" "}
-            <strong className="text-charcoal">
+            <strong className="text-charcoal font-bold">
               if it doesn't move your business forward, it doesn't leave our
               sprint.
             </strong>{" "}
@@ -562,8 +562,8 @@ function StrategicConsultingSection() {
                   className="text-crimson group-hover:text-white transition-colors duration-300"
                 />
               </div>
-              <h3 className="text-lg font-bold text-charcoal mb-2">{title}</h3>
-              <p className="text-surface-500 text-sm leading-relaxed">{desc}</p>
+              <h3 className="text-xl font-bold text-charcoal mb-2">{title}</h3>
+              <p className="text-surface-600 text-base font-medium leading-relaxed">{desc}</p>
             </article>
           ))}
         </div>
@@ -620,10 +620,10 @@ function ServicesSnapshot() {
                 </div>
               </div>
               <div className="p-6 flex flex-col">
-                <h3 className="text-lg font-bold text-charcoal mb-2">
+                <h3 className="text-xl font-bold text-charcoal mb-2">
                   {title}
                 </h3>
-                <p className="text-surface-500 text-sm leading-relaxed flex-1">
+                <p className="text-surface-600 text-base font-medium leading-relaxed flex-1">
                   {desc}
                 </p>
                 <Link
@@ -679,8 +679,8 @@ function DeliveryEngineSection() {
                   <Icon size={18} className="text-crimson" />
                 </div>
               </div>
-              <h3 className="text-white text-lg font-bold mb-2">{title}</h3>
-              <p className="text-surface-400 text-sm leading-relaxed">{desc}</p>
+              <h3 className="text-white text-xl font-bold mb-2">{title}</h3>
+              <p className="text-surface-300 text-base font-medium leading-relaxed">{desc}</p>
             </article>
           ))}
         </div>
@@ -738,13 +738,13 @@ function SolutionsSnapshot() {
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-crimson text-2xs font-bold uppercase tracking-[0.1em] mb-1.5">
+                <p className="text-crimson text-xs font-bold uppercase tracking-[0.1em] mb-1.5 mt-1">
                   {microCopy}
                 </p>
-                <h3 className="text-lg font-bold text-charcoal mb-2">
+                <h3 className="text-xl font-bold text-charcoal mb-2">
                   {title}
                 </h3>
-                <p className="text-surface-500 text-sm leading-relaxed">
+                <p className="text-surface-600 text-base font-medium leading-relaxed">
                   {desc}
                 </p>
               </div>
@@ -822,10 +822,10 @@ function SocialProofSection() {
               <p className="text-4xl sm:text-5xl font-extrabold text-crimson font-display mb-2">
                 {value}
               </p>
-              <p className="text-charcoal text-sm font-semibold mb-1">
+              <p className="text-charcoal text-base font-bold mb-1">
                 {label}
               </p>
-              <p className="text-surface-400 text-xs">{context}</p>
+              <p className="text-surface-500 text-sm font-medium">{context}</p>
             </div>
           ))}
         </div>
@@ -837,11 +837,11 @@ function SocialProofSection() {
               <span className="badge-crimson text-xs mb-3 inline-block">
                 Featured Case Study
               </span>
-              <p className="text-charcoal font-bold text-lg sm:text-xl mb-1 leading-snug">
+              <p className="text-charcoal font-bold text-xl sm:text-2xl mb-2 leading-snug">
                 From 47 Hours to 4: How a KSA Logistics Company Reduced Incident
                 Response Time — and Saved $2.4M in Year One.
               </p>
-              <p className="text-surface-500 text-sm">
+              <p className="text-surface-600 text-base font-medium">
                 Fleet management · Saudi Arabia · 500+ vehicles · Full case
                 study with architecture breakdown and ROI methodology.
               </p>
@@ -892,8 +892,8 @@ function WhyBeatSection() {
               <div className="w-11 h-11 rounded-xl bg-crimson/15 border border-crimson/30 flex items-center justify-center mb-4">
                 <Icon size={20} className="text-crimson" />
               </div>
-              <h3 className="text-white text-base font-bold mb-2">{title}</h3>
-              <p className="text-surface-400 text-sm leading-relaxed">{desc}</p>
+              <h3 className="text-white text-lg font-bold mb-2">{title}</h3>
+              <p className="text-surface-300 text-base font-medium leading-relaxed">{desc}</p>
             </article>
           ))}
         </div>
@@ -956,10 +956,10 @@ function TechStackSection() {
         <div className="rounded-2xl border border-surface-200 bg-white p-6 sm:p-8">
           <div className="flex flex-col sm:flex-row items-start gap-6">
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-charcoal mb-2">
+              <h3 className="text-xl font-bold text-charcoal mb-2">
                 Framework-Agnostic. Cloud-Agnostic. Outcome-Focused.
               </h3>
-              <p className="text-surface-500 text-sm leading-relaxed max-w-2xl">
+              <p className="text-surface-600 font-medium text-base leading-relaxed max-w-2xl">
                 We will never recommend a technology because it's what our team
                 prefers to work with. Every tech recommendation comes with a
                 written rationale tied to your specific constraints — budget,
@@ -1025,7 +1025,7 @@ function TestimonialsSection() {
             actually told us when our scope was wrong — before we spent the
             budget on it."
           </p>
-          <p className="text-surface-400 text-sm">
+          <p className="text-surface-600 text-base font-medium">
             — CTO, Enterprise Client (name withheld under NDA) · Full engagement
             story available on request
           </p>
@@ -1098,8 +1098,8 @@ function GlobalPresenceSection() {
                   className="h-6 w-9 rounded-sm object-cover border border-surface-200 shrink-0 mt-0.5"
                 />
                 <div>
-                  <p className="font-bold text-charcoal text-lg">{country}</p>
-                  <p className="text-crimson text-xs font-semibold uppercase tracking-wider leading-snug">
+                  <p className="font-bold text-charcoal text-xl">{country}</p>
+                  <p className="text-crimson text-sm font-bold uppercase tracking-wider leading-snug">
                     {role}
                   </p>
                 </div>
@@ -1108,9 +1108,9 @@ function GlobalPresenceSection() {
                 {points.map((point) => (
                   <li
                     key={point}
-                    className="flex items-center gap-2.5 text-sm text-surface-600"
+                    className="flex items-center gap-2.5 text-base font-medium text-surface-600"
                   >
-                    <MapPin size={13} className="text-crimson shrink-0" />
+                    <MapPin size={15} className="text-crimson shrink-0 mt-0.5" />
                     {point}
                   </li>
                 ))}

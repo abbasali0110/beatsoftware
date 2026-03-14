@@ -1,14 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Globe, MapPin, Phone, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, Phone, Mail, ShieldCheck } from "lucide-react";
+import GlobalPresenceHeroSection from "./components/GlobalPresenceHeroSection";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-
-const stats = [
-  { value: "2", label: "Active markets" },
-  { value: "11", label: "Strategic domains" },
-  { value: "50+", label: "Enterprise rollouts" },
-  { value: "1", label: "Delivery standard" },
-];
 
 const ksaPoints = [
   "SAMA CSF — Saudi Central Bank cyber security framework",
@@ -29,16 +23,16 @@ const indiaPoints = [
 ];
 
 const complianceMatrix = [
-  { framework: "ISO 27001", market: "Both", domains: "Finance, Healthcare, IT Services, Govt", approach: "Architecture-embedded controls with annual audit readiness" },
-  { framework: "SAMA CSF 2.0", market: "KSA", domains: "Digital Finance, Banking", approach: "Compliance-native platform design from day one" },
-  { framework: "ZATCA Phase 3", market: "KSA", domains: "Retail, ERP, Commerce", approach: "Real-time e-invoicing integration with FATOORA API" },
-  { framework: "SDAIA Practices", market: "KSA", domains: "Public Sector, AI Platforms", approach: "Data localisation and AI governance controls" },
-  { framework: "NPHIES", market: "KSA", domains: "Healthcare", approach: "HL7 FHIR-compatible architecture for payer integration" },
-  { framework: "RBI Digital Lending", market: "India", domains: "Fintech, NBFC Platforms", approach: "DLG-compliant process architecture and audit trail" },
-  { framework: "GST e-Invoice", market: "India", domains: "ERP, Commerce, Manufacturing", approach: "IRP integration and IRN lifecycle management" },
-  { framework: "RERA Alignment", market: "India", domains: "Real Estate", approach: "State-level RERA workflow and disclosure automation" },
-  { framework: "ISO 9001", market: "Both", domains: "Infrastructure, Manufacturing", approach: "Quality management controls in delivery governance" },
-  { framework: "HIPAA Controls", market: "Both", domains: "Healthcare", approach: "PHI protection architecture for international healthcare clients" },
+  { framework: "ISO 27001",        market: "Both",  domains: "Finance, Healthcare, IT Services, Govt",  approach: "Architecture-embedded controls with annual audit readiness" },
+  { framework: "SAMA CSF 2.0",     market: "KSA",   domains: "Digital Finance, Banking",                approach: "Compliance-native platform design from day one" },
+  { framework: "ZATCA Phase 3",    market: "KSA",   domains: "Retail, ERP, Commerce",                   approach: "Real-time e-invoicing integration with FATOORA API" },
+  { framework: "SDAIA Practices",  market: "KSA",   domains: "Public Sector, AI Platforms",             approach: "Data localisation and AI governance controls" },
+  { framework: "NPHIES",           market: "KSA",   domains: "Healthcare",                              approach: "HL7 FHIR-compatible architecture for payer integration" },
+  { framework: "RBI Digital Lending", market: "India", domains: "Fintech, NBFC Platforms",             approach: "DLG-compliant process architecture and audit trail" },
+  { framework: "GST e-Invoice",    market: "India", domains: "ERP, Commerce, Manufacturing",            approach: "IRP integration and IRN lifecycle management" },
+  { framework: "RERA Alignment",   market: "India", domains: "Real Estate",                             approach: "State-level RERA workflow and disclosure automation" },
+  { framework: "ISO 9001",         market: "Both",  domains: "Infrastructure, Manufacturing",           approach: "Quality management controls in delivery governance" },
+  { framework: "HIPAA Controls",   market: "Both",  domains: "Healthcare",                              approach: "PHI protection architecture for international healthcare clients" },
 ];
 
 const crossBorder = [
@@ -83,75 +77,62 @@ const deliveryModel = [
   },
 ];
 
+// ─── Market badge helper ───────────────────────────────────────────────────────
+
+function MarketBadge({ market, size = "sm" }: { market: string; size?: "sm" | "xs" }) {
+  const style = {
+    color:            market === "KSA"  ? "var(--bs-ksa-text)"   : market === "India" ? "var(--bs-india-text)"  : "var(--bs-both-text)",
+    background:       market === "KSA"  ? "var(--bs-ksa-bg)"     : market === "India" ? "var(--bs-india-bg)"    : "var(--bs-both-bg)",
+    borderColor:      market === "KSA"  ? "var(--bs-ksa-border)" : market === "India" ? "var(--bs-india-border)": "var(--bs-both-border)",
+  };
+  return (
+    <span
+      className={`font-bold uppercase tracking-wide border rounded ${
+        size === "xs" ? "text-[9px] px-2 py-0.5" : "text-[9px] px-2.5 py-1 tracking-[0.2em]"
+      }`}
+      style={style}
+    >
+      {market}
+    </span>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function GlobalPresence() {
   return (
-    <div className="bg-charcoal-dark">
-      {/* ── HERO ── */}
-      <section className="relative w-full -mt-[72px] min-h-[100svh] bg-charcoal-dark text-white overflow-hidden flex flex-col">
-        <div className="absolute inset-0 bg-[#0A0A0B]/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B] via-transparent to-transparent" />
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage: "radial-gradient(circle, #DC143C 1px, transparent 1px)",
-            backgroundSize: "44px 44px",
-          }}
-        />
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-crimson/[0.08] rounded-full blur-[160px]" />
-        <div className="absolute bottom-[10%] left-[-8%] w-[400px] h-[400px] bg-crimson/[0.05] rounded-full blur-[130px]" />
+    <div className="bg-theme-base">
 
-        <div className="container-xl relative z-10 flex-1 flex items-center py-36 sm:py-44">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-crimson/30 bg-crimson/[0.10] text-[10px] font-bold tracking-[0.2em] uppercase text-white mb-8">
-              <Globe size={11} className="text-crimson" />
-              2 Markets · 11 Domains · 1 Standard
-            </div>
-            <h1 className="font-extrabold leading-[0.93] tracking-tight mb-7">
-              <span className="block text-[clamp(2.2rem,6vw,4.8rem)] text-white">
-                Engineering compliance-
-              </span>
-              <span className="block text-[clamp(2.2rem,6vw,4.8rem)] text-white/35 mt-1">
-                native software across
-              </span>
-              <span className="block text-[clamp(2.2rem,6vw,4.8rem)] bg-crimson-gradient bg-clip-text text-transparent mt-1">
-                two high-growth markets.
-              </span>
-            </h1>
-            <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl border-l-2 border-crimson/50 pl-5">
-              Beat Software operates across{" "}
-              <span className="text-white font-semibold">Saudi Arabia and India</span>{" "}
-              — two distinct regulatory environments requiring precision-engineered
-              platforms. We don't generalise. We go deep in each market.
-            </p>
-          </div>
-        </div>
+      <GlobalPresenceHeroSection />
 
-        {/* Stats bar */}
-        <div className="relative z-10 border-t border-white/[0.08] bg-black/30 backdrop-blur-md">
-          <div className="container-xl">
-            <div className="grid grid-cols-2 sm:grid-cols-4">
-              {stats.map(({ value, label }, i) => (
-                <div
-                  key={label}
-                  className={`px-6 sm:px-8 py-5 sm:py-6 ${i < stats.length - 1 ? "border-r border-white/[0.07]" : ""}`}
-                >
-                  <p className="text-2xl sm:text-3xl font-black text-white tabular-nums leading-none mb-1">
-                    {value}
-                  </p>
-                  <p className="text-[10px] text-white/35 uppercase tracking-[0.12em] font-medium">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
+      {/* ── STATS BAR ── */}
+      <section className="bg-[#0d0d0e] border-b border-white/[0.07]">
+        <div className="container-xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4">
+            {[
+              { value: "2",   label: "Active markets" },
+              { value: "11",  label: "Strategic domains" },
+              { value: "50+", label: "Enterprise rollouts" },
+              { value: "1",   label: "Delivery standard" },
+            ].map(({ value, label }, i) => (
+              <div
+                key={label}
+                className={`px-6 sm:px-8 py-5 sm:py-6 ${i < 3 ? "border-r border-white/[0.07]" : ""}`}
+              >
+                <p className="text-2xl sm:text-3xl font-black text-white tabular-nums leading-none mb-1">
+                  {value}
+                </p>
+                <p className="text-[10px] text-white/40 uppercase tracking-[0.12em] font-medium">
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── MARKET DEEP DIVE ── */}
-      <section className="bg-charcoal-dark border-b border-white/[0.07]">
+      <section className="bg-theme-base border-b border-theme-border">
         <div className="container-xl py-20 sm:py-24">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-5 h-[1px] bg-crimson shrink-0" />
@@ -168,10 +149,10 @@ export default function GlobalPresence() {
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-400/75 mb-2">
                 Saudi Arabia
               </p>
-              <h3 className="text-white text-2xl font-bold mb-2">
+              <h3 className="text-theme-text-primary text-2xl font-bold mb-2">
                 Vision 2030 Execution
               </h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-6">
+              <p className="text-theme-text-secondary text-sm leading-relaxed mb-6">
                 Saudi Arabia's transformation agenda demands enterprise software
                 that is bilingual, compliant, and architecturally aligned with
                 the Kingdom's regulatory frameworks from day one.
@@ -180,20 +161,20 @@ export default function GlobalPresence() {
                 {ksaPoints.map((point) => (
                   <li key={point} className="flex items-start gap-2.5">
                     <CheckCircle2 size={13} className="text-amber-400/60 shrink-0 mt-0.5" />
-                    <span className="text-white/55 text-xs leading-relaxed">{point}</span>
+                    <span className="text-theme-text-muted text-xs leading-relaxed">{point}</span>
                   </li>
                 ))}
               </ul>
               <div className="flex flex-wrap gap-2 pt-4 border-t border-amber-400/[0.10]">
-                <div className="flex items-center gap-2 text-white/40 text-xs">
+                <div className="flex items-center gap-2 text-theme-text-muted text-xs">
                   <MapPin size={11} /> Riyadh Office
                 </div>
-                <span className="text-white/20">·</span>
-                <div className="flex items-center gap-2 text-white/40 text-xs">
+                <span className="text-theme-text-disabled">·</span>
+                <div className="flex items-center gap-2 text-theme-text-muted text-xs">
                   <Phone size={11} /> +966 11 XXX XXXX
                 </div>
-                <span className="text-white/20">·</span>
-                <div className="flex items-center gap-2 text-white/40 text-xs">
+                <span className="text-theme-text-disabled">·</span>
+                <div className="flex items-center gap-2 text-theme-text-muted text-xs">
                   <Mail size={11} /> ksa@beatsoftware.com
                 </div>
               </div>
@@ -206,10 +187,10 @@ export default function GlobalPresence() {
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-sky-400/75 mb-2">
                 India
               </p>
-              <h3 className="text-white text-2xl font-bold mb-2">
+              <h3 className="text-theme-text-primary text-2xl font-bold mb-2">
                 Scale-Grade Delivery
               </h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-6">
+              <p className="text-theme-text-secondary text-sm leading-relaxed mb-6">
                 India's high-volume enterprise environment requires platforms
                 architected for millions of transactions, multi-state compliance,
                 and continuous regulatory evolution.
@@ -218,20 +199,20 @@ export default function GlobalPresence() {
                 {indiaPoints.map((point) => (
                   <li key={point} className="flex items-start gap-2.5">
                     <CheckCircle2 size={13} className="text-sky-400/60 shrink-0 mt-0.5" />
-                    <span className="text-white/55 text-xs leading-relaxed">{point}</span>
+                    <span className="text-theme-text-muted text-xs leading-relaxed">{point}</span>
                   </li>
                 ))}
               </ul>
               <div className="flex flex-wrap gap-2 pt-4 border-t border-sky-400/[0.10]">
-                <div className="flex items-center gap-2 text-white/40 text-xs">
+                <div className="flex items-center gap-2 text-theme-text-muted text-xs">
                   <MapPin size={11} /> Hyderabad Office
                 </div>
-                <span className="text-white/20">·</span>
-                <div className="flex items-center gap-2 text-white/40 text-xs">
+                <span className="text-theme-text-disabled">·</span>
+                <div className="flex items-center gap-2 text-theme-text-muted text-xs">
                   <Phone size={11} /> +91 40 XXXX XXXX
                 </div>
-                <span className="text-white/20">·</span>
-                <div className="flex items-center gap-2 text-white/40 text-xs">
+                <span className="text-theme-text-disabled">·</span>
+                <div className="flex items-center gap-2 text-theme-text-muted text-xs">
                   <Mail size={11} /> india@beatsoftware.com
                 </div>
               </div>
@@ -241,7 +222,7 @@ export default function GlobalPresence() {
       </section>
 
       {/* ── COMPLIANCE MATRIX ── */}
-      <section className="bg-beige border-b border-black/[0.08]">
+      <section className="bg-theme-raised border-b border-theme-border">
         <div className="container-xl py-20 sm:py-24">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-5 h-[1px] bg-crimson shrink-0" />
@@ -249,36 +230,30 @@ export default function GlobalPresence() {
               Compliance Coverage
             </span>
           </div>
-          <div className="overflow-x-auto rounded-2xl border border-black/[0.08]">
+          <div className="overflow-x-auto rounded-2xl border border-theme-border">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-rhino text-white">
-                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap">Framework</th>
-                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap">Market</th>
-                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap">Domains</th>
-                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em]">Our Approach</th>
+                <tr className="bg-theme-elevated">
+                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap text-theme-text-muted">Framework</th>
+                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap text-theme-text-muted">Market</th>
+                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] whitespace-nowrap text-theme-text-muted">Domains</th>
+                  <th className="px-5 py-4 text-left text-[10px] font-bold uppercase tracking-[0.18em] text-theme-text-muted">Our Approach</th>
                 </tr>
               </thead>
               <tbody>
                 {complianceMatrix.map(({ framework, market, domains, approach }, i) => (
                   <tr
                     key={framework}
-                    className={`border-t border-black/[0.06] ${i % 2 === 0 ? "bg-white" : "bg-beige/60"} hover:bg-crimson/[0.03] transition-colors duration-150`}
+                    className={`border-t border-theme-border-muted transition-colors duration-150 hover:bg-theme-elevated ${
+                      i % 2 === 0 ? "bg-theme-overlay" : "bg-theme-raised"
+                    }`}
                   >
-                    <td className="px-5 py-4 font-bold text-rhino text-sm whitespace-nowrap">{framework}</td>
+                    <td className="px-5 py-4 font-bold text-theme-text-primary text-sm whitespace-nowrap">{framework}</td>
                     <td className="px-5 py-4">
-                      <span className={`text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded border ${
-                        market === "KSA"
-                          ? "text-amber-700 bg-amber-100 border-amber-200"
-                          : market === "India"
-                            ? "text-sky-700 bg-sky-100 border-sky-200"
-                            : "text-emerald-700 bg-emerald-100 border-emerald-200"
-                      }`}>
-                        {market}
-                      </span>
+                      <MarketBadge market={market} size="xs" />
                     </td>
-                    <td className="px-5 py-4 text-rhino/60 text-xs">{domains}</td>
-                    <td className="px-5 py-4 text-rhino/60 text-xs leading-relaxed">{approach}</td>
+                    <td className="px-5 py-4 text-theme-text-muted text-xs">{domains}</td>
+                    <td className="px-5 py-4 text-theme-text-muted text-xs leading-relaxed">{approach}</td>
                   </tr>
                 ))}
               </tbody>
@@ -288,7 +263,7 @@ export default function GlobalPresence() {
       </section>
 
       {/* ── CROSS-BORDER CAPABILITY ── */}
-      <section className="bg-charcoal-dark border-b border-white/[0.07]">
+      <section className="bg-theme-base border-b border-theme-border">
         <div className="container-xl py-20 sm:py-24">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-5 h-[1px] bg-crimson shrink-0" />
@@ -296,15 +271,18 @@ export default function GlobalPresence() {
               Cross-Border Capability
             </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden"
+            style={{ background: "var(--bs-border)" }}
+          >
             {crossBorder.map(({ title, desc }) => (
               <div
                 key={title}
-                className="group bg-[#0d0d0e] px-8 py-10 hover:bg-[#0f0f11] transition-colors duration-200"
+                className="group bg-theme-raised px-8 py-10 hover:bg-theme-overlay transition-colors duration-200"
               >
                 <div className="w-2 h-2 rounded-full bg-crimson/60 mb-6" />
-                <h3 className="text-white font-bold text-base mb-3">{title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-theme-text-primary font-bold text-base mb-3">{title}</h3>
+                <p className="text-theme-text-muted text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -312,7 +290,7 @@ export default function GlobalPresence() {
       </section>
 
       {/* ── ON-THE-GROUND DELIVERY ── */}
-      <section className="bg-beige border-b border-black/[0.08]">
+      <section className="bg-theme-overlay border-b border-theme-border">
         <div className="container-xl py-20 sm:py-24">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-5 h-[1px] bg-crimson shrink-0" />
@@ -324,23 +302,21 @@ export default function GlobalPresence() {
             {deliveryModel.map(({ market, color, title, points }) => (
               <div
                 key={market}
-                className="group flex flex-col gap-5 p-8 rounded-2xl bg-white border border-black/[0.07] hover:border-crimson/15 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] transition-all duration-300"
+                className="group relative flex flex-col gap-5 p-8 rounded-2xl bg-theme-raised border border-theme-border [box-shadow:var(--bs-shadow-card)] hover:border-theme-border-accent hover:-translate-y-1 hover:[box-shadow:var(--bs-shadow-elevated)] transition-all duration-300 overflow-hidden"
               >
+                <div
+                  className="absolute top-0 inset-x-0 h-px pointer-events-none"
+                  style={{ background: "linear-gradient(90deg, transparent, var(--bs-border), transparent)" }}
+                />
                 <div className="flex items-center gap-3">
-                  <span className={`text-[9px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 rounded border ${
-                    color === "amber"
-                      ? "text-amber-700 bg-amber-100 border-amber-200"
-                      : "text-sky-700 bg-sky-100 border-sky-200"
-                  }`}>
-                    {market}
-                  </span>
-                  <h3 className="text-rhino font-bold text-sm">{title}</h3>
+                  <MarketBadge market={market} size="sm" />
+                  <h3 className="text-theme-text-primary font-bold text-sm">{title}</h3>
                 </div>
                 <ul className="space-y-2.5">
                   {points.map((p) => (
                     <li key={p} className="flex items-start gap-3">
                       <CheckCircle2 size={13} className="text-crimson shrink-0 mt-0.5" />
-                      <span className="text-rhino/65 text-sm leading-relaxed">{p}</span>
+                      <span className="text-theme-text-secondary text-sm leading-relaxed">{p}</span>
                     </li>
                   ))}
                 </ul>
@@ -351,7 +327,7 @@ export default function GlobalPresence() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-charcoal-dark">
+      <section className="bg-theme-base">
         <div className="container-xl py-20 sm:py-24">
           <div
             className="relative rounded-3xl p-[1px] overflow-hidden"
@@ -360,7 +336,7 @@ export default function GlobalPresence() {
                 "linear-gradient(135deg, rgba(220,20,60,0.5) 0%, rgba(220,20,60,0.15) 40%, rgba(255,255,255,0.06) 100%)",
             }}
           >
-            <div className="relative rounded-3xl bg-[#0d0d0e] px-8 py-10 sm:px-12 sm:py-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 overflow-hidden">
+            <div className="relative rounded-3xl bg-theme-raised px-8 py-10 sm:px-12 sm:py-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 overflow-hidden">
               <div className="absolute -top-40 -left-40 w-80 h-80 bg-crimson/[0.06] rounded-full blur-[100px] pointer-events-none" />
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-crimson/40 via-crimson/20 to-transparent" />
               <div className="relative">
@@ -370,12 +346,12 @@ export default function GlobalPresence() {
                     Get Started
                   </span>
                 </div>
-                <h3 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
+                <h3 className="text-3xl sm:text-4xl font-bold text-theme-text-primary leading-tight mb-4">
                   Ready to operate in
                   <br />
                   KSA or India?
                 </h3>
-                <p className="text-white/45 text-base leading-relaxed max-w-md">
+                <p className="text-theme-text-muted text-base leading-relaxed max-w-md">
                   Share your market context and operating constraints. We'll
                   frame a compliance-aware delivery blueprint for your domain.
                 </p>
@@ -385,8 +361,8 @@ export default function GlobalPresence() {
                   Start a Domain Conversation <ArrowRight size={16} />
                 </Link>
                 <div className="flex items-center gap-1.5">
-                  <ShieldCheck size={11} className="text-white/25" />
-                  <p className="text-white/25 text-xs">NDA available on request</p>
+                  <ShieldCheck size={11} className="text-theme-text-disabled" />
+                  <p className="text-theme-text-disabled text-xs">NDA available on request</p>
                 </div>
               </div>
             </div>

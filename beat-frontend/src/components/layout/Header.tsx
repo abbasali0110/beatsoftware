@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { ArrowRight, ChevronDown, Menu, Search, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Globe, Menu, Search, X } from "lucide-react";
 import MobileNav from "./MobileNav";
 
 const primaryLinks = [
@@ -26,13 +26,27 @@ const navLinks = [
   primaryLinks[4],
 ];
 
+const regions = [
+  { label: "India", code: "IN", flag: "/assets/images/flags/in.png" },
+  { label: "Saudi Arabia", code: "SA", flag: "/assets/images/flags/sa.webp" },
+  { label: "UAE", code: "AE", flag: "/assets/images/flags/ae.png" },
+  { label: "Qatar", code: "QA", flag: "/assets/images/flags/qa.png" },
+  { label: "UK", code: "UK", flag: "/assets/images/flags/gb.png" },
+  { label: "USA", code: "US", flag: "/assets/images/flags/us.png" },
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [regionOpen, setRegionOpen] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState<
+    (typeof regions)[number] | null
+  >(null);
   const moreRef = useRef<HTMLDivElement>(null);
+  const regionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,11 +60,15 @@ export default function Header() {
       if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
         setMoreOpen(false);
       }
+      if (regionRef.current && !regionRef.current.contains(e.target as Node)) {
+        setRegionOpen(false);
+      }
     };
 
     const onEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMoreOpen(false);
+        setRegionOpen(false);
       }
     };
 
@@ -220,10 +238,72 @@ export default function Header() {
 
             <NavLink
               to="/contact"
-              className="hidden lg:inline-flex btn-primary"
+              className="hidden lg:inline-flex h-10 items-center btn-primary"
             >
-              Start a Project <ArrowRight size={16} />
+              Contact Us <ArrowRight size={16} />
             </NavLink>
+
+            <div
+              ref={regionRef}
+              className="relative hidden lg:block"
+              onMouseEnter={() => setRegionOpen(true)}
+              onMouseLeave={() => setRegionOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setRegionOpen((prev) => !prev)}
+                onFocus={() => setRegionOpen(true)}
+                className={`inline-flex h-10 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200 ${
+                  scrolled
+                    ? "border-surface-200 bg-white text-charcoal hover:border-crimson/20"
+                    : "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                }`}
+              >
+                {selectedRegion ? (
+                  <img
+                    src={selectedRegion.flag}
+                    alt={`${selectedRegion.label} flag`}
+                    className="h-4 w-6 rounded-[2px] object-cover"
+                  />
+                ) : (
+                  <Globe size={15} className="text-crimson" />
+                )}
+                <span>{selectedRegion?.label ?? "Region"}</span>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform ${regionOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {regionOpen && (
+                <div className="absolute right-0 top-full z-50 w-52 pt-2">
+                  <div className="overflow-hidden rounded-xl border border-surface-200 bg-white py-2 shadow-hover">
+                    {regions.map((region) => (
+                      <button
+                        key={region.code}
+                        type="button"
+                        onClick={() => {
+                          setSelectedRegion(region);
+                          setRegionOpen(false);
+                        }}
+                        className={`flex w-full items-center gap-3 px-4 py-2 text-left text-sm transition-colors ${
+                          selectedRegion?.code === region.code
+                            ? "bg-crimson/10 font-semibold text-crimson"
+                            : "text-surface-700 hover:bg-surface-50 hover:text-charcoal"
+                        }`}
+                      >
+                        <img
+                          src={region.flag}
+                          alt={`${region.label} flag`}
+                          className="h-4 w-6 rounded-[2px] object-cover"
+                        />
+                        <span>{region.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
             <button
               className={`lg:hidden p-2 rounded-lg transition-colors ${
@@ -244,6 +324,9 @@ export default function Header() {
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
         links={navLinks}
+        regions={regions}
+        selectedRegion={selectedRegion}
+        onRegionChange={setSelectedRegion}
       />
       {/* <div className="h-[72px]" /> */}
     </>

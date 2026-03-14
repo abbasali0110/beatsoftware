@@ -28,24 +28,26 @@ const ServiceHeroSection = () => {
       <div className="absolute top-[-15%] right-[-8%] w-[640px] h-[640px] bg-crimson/[0.10] rounded-full blur-[160px]" />
       <div className="absolute bottom-[15%] left-[-12%] w-[420px] h-[420px] bg-crimson/[0.06] rounded-full blur-[130px]" />
 
-      <div className="container-xl relative z-10 flex-1 flex items-end py-12 sm:py-16 lg:py-20">
-        <div className="w-full">
-          <div className="section-tag inline-flex items-center gap-2 rounded-full border border-crimson/30 bg-crimson/10 px-3 py-1.5 mb-6">
-            <Sparkles size={12} />
-            Enterprise Services 2026
+      <div className="relative z-10 flex-1 flex items-end pb-14 sm:pb-16">
+        <div className="w-full pl-8 sm:pl-14 lg:pl-20 xl:pl-28 pr-4 sm:pr-6 lg:pr-8">
+          <div className="max-w-4xl">
+            <div className="section-tag inline-flex items-center gap-2 rounded-full border border-crimson/30 bg-crimson/10 px-3 py-1.5 mb-6">
+              <Sparkles size={12} />
+              Enterprise Services 2026
+            </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[0.95] max-w-5xl">
-            Enterprise engineering services built for
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[0.94] max-w-5xl">
+            Software consulting engineered for
             <span className="block text-crimson">
-              scale, resilience, and measurable outcomes.
+              business outcomes, not just outputs.
             </span>
           </h1>
 
           <p className="mt-6 max-w-3xl text-white/80 text-base sm:text-lg leading-relaxed">
-            We partner with technology and business teams to modernize
-            platforms, accelerate delivery, and reduce operational risk across
-            the full software lifecycle.
+            We integrate tightly with your organization to assess gaps, design
+            future-proof architecture, and build the enterprise-grade products
+            you need to scale confidently.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">

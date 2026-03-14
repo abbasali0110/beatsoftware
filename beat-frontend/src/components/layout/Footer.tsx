@@ -113,7 +113,7 @@ function FooterLink({
         href={to}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex items-center gap-1 text-surface-500 hover:text-white text-sm transition-colors duration-200"
+        className="group inline-flex items-center gap-1 text-surface-400 hover:text-white text-sm transition-colors duration-200"
       >
         {inner}
         <ArrowUpRight
@@ -128,7 +128,7 @@ function FooterLink({
     return (
       <Link
         to="/contact"
-        className="group inline-flex items-center gap-1 text-surface-500 hover:text-white text-sm transition-colors duration-200"
+        className="group inline-flex items-center gap-1 text-surface-400 hover:text-white text-sm transition-colors duration-200"
       >
         {inner}
         <ArrowUpRight
@@ -144,7 +144,7 @@ function FooterLink({
       to={to}
       className={({ isActive }) =>
         `inline-flex items-center gap-1 text-sm transition-colors duration-200 ${
-          isActive ? "text-crimson" : "text-surface-500 hover:text-white"
+          isActive ? "text-crimson" : "text-surface-400 hover:text-white"
         }`
       }
     >
@@ -198,25 +198,25 @@ export default function Footer() {
                 </div>
               </div>
 
-              <p className="text-surface-600 text-sm leading-relaxed mb-6">
+              <p className="text-surface-300 text-base leading-relaxed mb-6">
                 Enterprise software engineering and technology consulting.
                 Delivering outcomes - not just code - for businesses in India
                 and Saudi Arabia since 2014.
               </p>
 
-              <div className="space-y-2.5 mb-6">
+              <div className="space-y-3 mb-6">
                 <a
                   href="mailto:contact@beatsoftware.com"
-                  className="flex items-center gap-2.5 text-surface-500 text-sm hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-surface-300 text-base hover:text-white transition-colors"
                 >
-                  <Mail size={14} className="text-crimson shrink-0" />
+                  <Mail size={16} className="text-crimson shrink-0" />
                   contact@beatsoftware.com
                 </a>
                 <a
                   href="tel:+918799346695"
-                  className="flex items-center gap-2.5 text-surface-500 text-sm hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-surface-300 text-base hover:text-white transition-colors"
                 >
-                  <Phone size={14} className="text-crimson shrink-0" />
+                  <Phone size={16} className="text-crimson shrink-0" />
                   +91 8799 346 695
                 </a>
               </div>
@@ -230,18 +230,18 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-surface-600 hover:text-white hover:bg-crimson hover:border-crimson hover:shadow-[0_0_15px_rgba(220,20,60,0.4)] transition-all duration-200"
+                      className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-surface-300 hover:text-white hover:bg-crimson hover:border-crimson hover:shadow-[0_0_15px_rgba(220,20,60,0.4)] transition-all duration-200"
                     >
-                      <Icon size={14} />
+                      <Icon size={18} />
                     </a>
                   ) : (
                     <Link
                       key={label}
                       to="/contact"
                       aria-label={label}
-                      className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-surface-600 hover:text-white hover:bg-crimson hover:border-crimson hover:shadow-[0_0_15px_rgba(220,20,60,0.4)] transition-all duration-200"
+                      className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-surface-300 hover:text-white hover:bg-crimson hover:border-crimson hover:shadow-[0_0_15px_rgba(220,20,60,0.4)] transition-all duration-200"
                     >
-                      <Icon size={14} />
+                      <Icon size={18} />
                     </Link>
                   ),
                 )}
@@ -290,10 +290,10 @@ export default function Footer() {
                   <span>Free</span> Download
                 </div>
 
-                <p className="text-white text-sm font-bold leading-snug mb-1">
+                <p className="text-white text-base font-bold leading-snug mb-1">
                   Get our 2026 Enterprise Security Checklist
                 </p>
-                <p className="text-surface-500 text-xs leading-relaxed mb-3">
+                <p className="text-surface-300 text-sm leading-relaxed mb-4">
                   47-point audit used by our clients before every major release.
                   Instant PDF - no pitch, no follow-up unless you want one.
                 </p>
@@ -316,7 +316,7 @@ export default function Footer() {
                   </button>
                 </form>
 
-                <p className="text-surface-700 text-[10px] mt-2">
+                <p className="text-surface-400 text-xs mt-3">
                   Join 1,200+ CTOs & engineering leads. Unsubscribe anytime.
                 </p>
               </div>
@@ -343,13 +343,13 @@ export default function Footer() {
                           </span>
                         )}
                       </div>
-                      <p className="text-crimson text-2xs font-bold uppercase tracking-wider mb-1 pl-[1.625rem]">
+                      <p className="text-crimson text-xs font-bold uppercase tracking-wider mb-1 mt-1 pl-[1.625rem]">
                         {role}
                       </p>
-                      <p className="text-surface-600 text-xs leading-relaxed pl-[1.625rem]">
+                      <p className="text-surface-300 text-sm leading-relaxed pl-[1.625rem]">
                         {line1}
                       </p>
-                      <p className="text-surface-600 text-xs leading-relaxed pl-[1.625rem]">
+                      <p className="text-surface-300 text-sm leading-relaxed pl-[1.625rem]">
                         {line2}
                       </p>
                       {city === "Saudi Arabia" && (
@@ -390,8 +390,8 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="container-xl py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-surface-700 text-xs">
+          <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-surface-400 text-sm text-center sm:text-left">
               (c) {new Date().getFullYear()} Beat Software Technologies Pvt.
               Ltd. All rights reserved.
             </p>
@@ -401,7 +401,7 @@ export default function Footer() {
                 <NavLink
                   key={label}
                   to={to === "#" ? "/contact" : to}
-                  className="text-surface-700 hover:text-white text-xs transition-colors"
+                  className="text-surface-400 hover:text-white text-sm transition-colors"
                 >
                   {label}
                 </NavLink>
@@ -411,7 +411,7 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               aria-label="Back to top"
-              className="group flex items-center gap-1.5 text-surface-600 hover:text-white text-xs transition-colors duration-200"
+              className="group flex items-center gap-2 text-surface-400 hover:text-white text-sm transition-colors duration-200"
             >
               Back to top
               <span className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-crimson group-hover:border-crimson transition-all duration-200">

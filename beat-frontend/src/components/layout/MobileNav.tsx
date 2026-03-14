@@ -6,9 +6,23 @@ interface MobileNavProps {
   open: boolean;
   onClose: () => void;
   links: { label: string; to: string }[];
+  regions: { label: string; code: string; flag: string }[];
+  selectedRegion: { label: string; code: string; flag: string } | null;
+  onRegionChange: (region: {
+    label: string;
+    code: string;
+    flag: string;
+  }) => void;
 }
 
-export default function MobileNav({ open, onClose, links }: MobileNavProps) {
+export default function MobileNav({
+  open,
+  onClose,
+  links,
+  regions,
+  selectedRegion,
+  onRegionChange,
+}: MobileNavProps) {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
@@ -41,6 +55,33 @@ export default function MobileNav({ open, onClose, links }: MobileNavProps) {
           </div>
 
           <nav className="p-4 space-y-1">
+            <div className="mb-4 rounded-xl border border-white/10 bg-white/5 p-3">
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">
+                Region
+              </p>
+              <div className="space-y-1">
+                {regions.map((region) => (
+                  <button
+                    key={region.code}
+                    type="button"
+                    onClick={() => onRegionChange(region)}
+                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
+                      selectedRegion?.code === region.code
+                        ? 'bg-crimson text-white'
+                        : 'text-white/75 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <img
+                      src={region.flag}
+                      alt={`${region.label} flag`}
+                      className="h-4 w-6 rounded-[2px] object-cover"
+                    />
+                    <span>{region.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {links.map((link) => (
               <NavLink
                 key={link.to}
@@ -65,7 +106,7 @@ export default function MobileNav({ open, onClose, links }: MobileNavProps) {
               Let us design, build, and scale your software with a business-first approach.
             </p>
             <NavLink to="/contact" onClick={onClose} className="btn-primary w-full justify-center">
-              Talk to Our Team <ArrowRight size={16} />
+              Contact Us <ArrowRight size={16} />
             </NavLink>
           </div>
         </div>

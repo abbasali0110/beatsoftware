@@ -28,14 +28,16 @@ const PortfolioHeroSection = () => {
       <div className="absolute top-[-15%] right-[-8%] w-[640px] h-[640px] bg-crimson/[0.10] rounded-full blur-[160px]" />
       <div className="absolute bottom-[15%] left-[-12%] w-[420px] h-[420px] bg-crimson/[0.06] rounded-full blur-[130px]" />
 
-      <div className="container-xl relative z-10 flex-1 flex items-end py-12 sm:py-16 lg:py-20">
-        <div className="w-full">
-          <div className="section-tag inline-flex items-center gap-2 rounded-full border border-crimson/30 bg-crimson/10 px-3 py-1.5 mb-6">
-            <Sparkles size={12} />
-            Delivered Work Under NDA
+      <div className="relative z-10 flex-1 flex items-end pb-14 sm:pb-16">
+        <div className="w-full pl-8 sm:pl-14 lg:pl-20 xl:pl-28 pr-4 sm:pr-6 lg:pr-8">
+          <div className="max-w-4xl">
+            <div className="section-tag inline-flex items-center gap-2 rounded-full border border-crimson/30 bg-crimson/10 px-3 py-1.5 mb-6">
+              <Sparkles size={12} />
+              Delivered Work Under NDA
+            </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[0.95] max-w-5xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[0.94] max-w-5xl">
             Enterprise platforms built for industries that demand
             <span className="block text-crimson">zero compromise.</span>
           </h1>

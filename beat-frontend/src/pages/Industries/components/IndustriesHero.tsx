@@ -87,82 +87,84 @@ function IndustriesHero() {
       <div className="absolute bottom-[15%] left-[-12%] w-[420px] h-[420px] bg-crimson/[0.06] rounded-full blur-[130px]" />
       <div className="absolute top-[72px] inset-x-0 h-px bg-gradient-to-r from-transparent via-crimson/20 to-transparent" />
 
-      <div className="container-xl relative z-10 flex-1 flex items-end py-12 sm:py-16 lg:py-20">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 w-full items-center">
-          <div className="lg:col-span-7 xl:col-span-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-crimson/30 bg-crimson/[0.12] text-white text-[10px] font-bold tracking-[0.2em] uppercase mb-7">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson" />
-              </span>
-              Multi-Region Compliance Active
+      <div className="relative z-10 flex-1 flex items-end pb-14 sm:pb-16">
+        <div className="w-full pl-8 sm:pl-14 lg:pl-20 xl:pl-28 pr-4 sm:pr-6 lg:pr-8">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 w-full items-center">
+            <div className="lg:col-span-7 xl:col-span-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-crimson/30 bg-crimson/[0.12] text-white text-[10px] font-bold tracking-[0.2em] uppercase mb-7">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson" />
+                </span>
+                Multi-Region Compliance Active
+              </div>
+
+              <h1 className="font-extrabold leading-[0.94] tracking-tight mb-5 text-white">
+                <span className="block text-3xl sm:text-4xl lg:text-5xl">
+                  Transforming Industries with
+                </span>
+                <span className="block text-3xl sm:text-4xl lg:text-5xl bg-crimson-gradient bg-clip-text text-transparent mt-1">
+                  AI-Native Intelligence.
+                </span>
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10">
+                <Link to="/contact" className="btn-primary btn-lg">
+                  Discuss Your Industry Needs
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={13} className="text-crimson" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
+                    Vision 2030 Ready
+                  </span>
+                </div>
+                <span className="hidden sm:block w-px h-4 bg-white/15" />
+                <div className="flex items-center gap-2">
+                  <Globe size={13} className="text-crimson" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
+                    Pan-India Scale
+                  </span>
+                </div>
+                <span className="hidden sm:block w-px h-4 bg-white/15" />
+                <div className="flex items-center gap-2">
+                  <Zap size={13} className="text-crimson" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
+                    Zero-Lag Systems
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <h1 className="font-extrabold leading-[0.93] tracking-tight mb-7">
-              <span className="block text-4xl sm:text-5xl lg:text-6xl text-white">
-                Transforming Industries with
-              </span>
-              <span className="block text-2xl sm:text-3xl lg:text-4xl bg-crimson-gradient bg-clip-text text-transparent mt-3">
-                AI-Native Intelligence.
-              </span>
-            </h1>
-
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10">
-              <Link to="/contact" className="btn-primary btn-lg">
-                Discuss Your Industry Needs
-                <ArrowRight size={18} />
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={13} className="text-crimson" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
-                  Vision 2030 Ready
-                </span>
-              </div>
-              <span className="hidden sm:block w-px h-4 bg-white/15" />
-              <div className="flex items-center gap-2">
-                <Globe size={13} className="text-crimson" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
-                  Pan-India Scale
-                </span>
-              </div>
-              <span className="hidden sm:block w-px h-4 bg-white/15" />
-              <div className="flex items-center gap-2">
-                <Zap size={13} className="text-crimson" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
-                  Zero-Lag Systems
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 xl:col-span-6 hidden lg:flex items-center justify-end">
-            <ul className="space-y-4">
-              {heroCoverageItems.map((item, i) => (
+            <div className="lg:col-span-5 xl:col-span-6 hidden lg:flex items-center justify-end">
+              <ul className="space-y-4">
+                {heroCoverageItems.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`flex items-center gap-3 transition-all duration-400 ease-out ${
+                      i < coverageCount
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-1"
+                    }`}
+                  >
+                    <CheckCircle2 size={18} className="text-crimson shrink-0" />
+                    <span className="font-medium text-white/90">{item}</span>
+                  </li>
+                ))}
                 <li
-                  key={item}
-                  className={`flex items-center gap-3 transition-all duration-400 ease-out ${
-                    i < coverageCount
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-1"
+                  className={`pl-9 font-medium transition-all duration-400 ease-out ${
+                    coverageCount > heroCoverageItems.length
+                      ? "opacity-100 translate-y-0 text-white/90"
+                      : "opacity-0 translate-y-1 text-white/40"
                   }`}
                 >
-                  <CheckCircle2 size={18} className="text-crimson shrink-0" />
-                  <span className="font-medium text-white/90">{item}</span>
+                  ...and 5 more.
                 </li>
-              ))}
-              <li
-                className={`pl-9 font-medium transition-all duration-400 ease-out ${
-                  coverageCount > heroCoverageItems.length
-                    ? "opacity-100 translate-y-0 text-white/90"
-                    : "opacity-0 translate-y-1 text-white/40"
-                }`}
-              >
-                ...and 5 more.
-              </li>
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

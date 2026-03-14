@@ -1,4 +1,4 @@
-﻿import { Opportunity, Benefit, Life } from '../types';
+import { Opportunity, Benefit, Life } from '../types';
 
 export const opportunities: Opportunity[] = [
   {
@@ -124,28 +124,28 @@ export const pleasureList: Benefit[] = [
     icon: 'mail',
     heading: 'Reply detection',
     desc: 'If you get a reply, further follow-ups are automatically stopped.',
-    imgUrl: 'assets/images/career/career1.jpg',
+    imgUrl: '/images/career/career1.jpg',
   },
   {
     id: 102,
     icon: 'calendar',
     heading: 'Follow-up',
     desc: 'Just set a number of days that you want send a follow-up.',
-    imgUrl: 'assets/images/career/career2.jpg',
+    imgUrl: '/images/career/career2.jpg',
   },
   {
     id: 103,
     icon: 'send',
     heading: 'Cold email',
     desc: 'Unlimited number of prospects daily with personalized emails.',
-    imgUrl: 'assets/images/career/career3.jpg',
+    imgUrl: '/images/career/career3.jpg',
   },
   {
     id: 104,
     icon: 'thumbs-up',
     heading: 'Teamwork',
     desc: "You and your teammates won't address the same person twice.",
-    imgUrl: 'assets/images/career/career4.jpg',
+    imgUrl: '/images/career/career4.jpg',
   },
 ];
 
@@ -154,19 +154,22 @@ export const lifes: Life[] = [
     id: 101,
     heading: 'What is Beat?',
     desc: 'Beat is a B2B SaaS company that provides competitive intelligence services to Brands, App Developers, SDK Sales Teams, and Investors (Public and Private). The most successful companies in the world use our platform to inform their mobile strategy.',
-    imgUrl: 'assets/images/career/career5.jpg',
+    imgUrl: '/images/career/career5.jpg',
   },
   {
     id: 102,
     heading: 'What is it like to work here?',
     desc: 'Beat is a B2B SaaS company that provides competitive intelligence to Brands, App Developers, SDK Sales Teams, and Investors (Public and Private). The most successful companies in the world use our platform to inform their mobile strategy.',
-    imgUrl: 'assets/images/career/kite.png',
+    imgUrl: '/images/career/kite.png',
   },
   {
     id: 103,
     heading: 'Our Values',
     desc: 'Beat is a B2B SaaS company that provides competitive intelligence to Brands, App Developers, SDK Sales Teams, and Investors (Public and Private). The most successful companies in the world use our platform to inform their mobile strategy.',
-    imgUrl: 'assets/images/career/value.png',
+    imgUrl: '/images/career/value.png',
   },
 ];
+
+
+
 

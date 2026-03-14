@@ -215,19 +215,19 @@ type StackItem = {
 };
 
 const stack: StackItem[] = [
-  { name: "React", icon: "/assets/images/tech/react.svg" },
-  { name: "Node.js", icon: "/assets/images/tech/nodejs.svg" },
-  { name: "TypeScript", icon: "/assets/images/tech/typescript.svg" },
-  { name: "PostgreSQL", icon: "/assets/images/tech/postgresql.svg" },
-  { name: "AWS", icon: "/assets/images/tech/aws.svg" },
-  { name: "Azure", icon: "/assets/images/tech/azure.svg" },
-  { name: "Docker", icon: "/assets/images/tech/docker.svg" },
-  { name: "Terraform", icon: "/assets/images/tech/terraform.svg" },
-  { name: "Redis", icon: "/assets/images/tech/redis.svg" },
-  { name: "Kafka", icon: "/assets/images/tech/kafka.svg" },
-  { name: "AI/ML", icon: "/assets/images/tech/aiml.svg" },
-  { name: "Cloud Integration", icon: "/assets/images/tech/cloud.svg" },
-  { name: "Data Center", icon: "/assets/images/tech/datacenter.svg" },
+  { name: "React", icon: "/images/tech/react.svg" },
+  { name: "Node.js", icon: "/images/tech/nodejs.svg" },
+  { name: "TypeScript", icon: "/images/tech/typescript.svg" },
+  { name: "PostgreSQL", icon: "/images/tech/postgresql.svg" },
+  { name: "AWS", icon: "/images/tech/aws.svg" },
+  { name: "Azure", icon: "/images/tech/azure.svg" },
+  { name: "Docker", icon: "/images/tech/docker.svg" },
+  { name: "Terraform", icon: "/images/tech/terraform.svg" },
+  { name: "Redis", icon: "/images/tech/redis.svg" },
+  { name: "Kafka", icon: "/images/tech/kafka.svg" },
+  { name: "AI/ML", icon: "/images/tech/aiml.svg" },
+  { name: "Cloud Integration", icon: "/images/tech/cloud.svg" },
+  { name: "Data Center", icon: "/images/tech/datacenter.svg" },
 ];
 
 const processSteps = [
@@ -635,3 +635,7 @@ export default function CareerPage() {
     </>
   );
 }
+
+
+
+

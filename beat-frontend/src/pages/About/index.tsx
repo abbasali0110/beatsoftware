@@ -128,7 +128,7 @@ export default function About() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom"
           style={{
-            backgroundImage: "url('assets/images/industry/giga.jpg')",
+            backgroundImage: "url('/images/industry/giga.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-[#1a1f2e]/60" />
@@ -439,3 +439,6 @@ export default function About() {
     </div>
   );
 }
+
+
+

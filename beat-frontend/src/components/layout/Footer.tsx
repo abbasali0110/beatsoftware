@@ -44,7 +44,7 @@ const knowledgeLinks = [
 
 const offices = [
   {
-    flagSrc: "assets/images/flags/in.png",
+    flagSrc: "/images/flags/in.png",
     flagAlt: "India flag",
     city: "India (HQ)",
     role: "Headquarters - Engineering CoE",
@@ -52,7 +52,7 @@ const offices = [
     line2: "24/5 engineering capacity",
   },
   {
-    flagSrc: "assets/images/flags/sa.webp",
+    flagSrc: "/images/flags/sa.webp",
     flagAlt: "Saudi Arabia flag",
     city: "Saudi Arabia",
     role: "Regional Office - KSA",
@@ -182,7 +182,7 @@ export default function Footer() {
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl bg-crimson-gradient flex items-center justify-center shadow-glow">
                   <img
-                    src="assets/images/logo/50.png"
+                    src="/images/logo/50.png"
                     alt="Beat"
                     width={20}
                     height={20}
@@ -356,7 +356,7 @@ export default function Footer() {
                         <div className="mt-3 pl-[1.625rem]">
                           <div className="inline-block bg-white rounded-lg px-3 py-2">
                             <img
-                              src="assets/images/vision2030.png"
+                              src="/images/vision2030.png"
                               alt="Saudi Vision 2030"
                               className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-200"
                             />
@@ -424,3 +424,6 @@ export default function Footer() {
     </>
   );
 }
+
+
+

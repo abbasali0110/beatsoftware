@@ -7,7 +7,7 @@ const ServiceHeroSection = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom"
         style={{
-          backgroundImage: "url('assets/images/industry/giga.jpg')",
+          backgroundImage: "url('/images/industry/giga.jpg')",
         }}
       />
 
@@ -65,3 +65,6 @@ const ServiceHeroSection = () => {
 };
 
 export default ServiceHeroSection;
+
+
+

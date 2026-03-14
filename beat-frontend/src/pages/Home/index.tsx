@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
@@ -98,37 +98,37 @@ const coreServices = [
     title: "Digital Modernization & Enterprise Build",
     desc: "Whether you're replacing a 10-year-old system or building a new one, we engineer it to handle tomorrow's load. Architecture-first, performance-validated, governance-ready — from discovery to deployment.",
     icon: Layers3,
-    img: "assets/images/home/home11-lg.jpg",
+    img: "/images/home/home11-lg.jpg",
   },
   {
     title: "Cloud Migration & DevOps Acceleration",
     desc: "Still running on servers from 2014? We migrate, containerize, and automate — cutting deployment time by up to 70% and infrastructure cost by up to 40% within six months of engagement.",
     icon: Cloud,
-    img: "assets/images/home/home12-lg.jpg",
+    img: "/images/home/home12-lg.jpg",
   },
   {
     title: "Monolith Decomposition & Service Mesh",
     desc: "A monolith that's working today is a liability compounding interest. We break it into independently deployable services — with zero-downtime migration strategy and a release cycle your team actually controls.",
     icon: Network,
-    img: "assets/images/home/home13-lg.jpg",
+    img: "/images/home/home13-lg.jpg",
   },
   {
     title: "Enterprise Integration & API Ecosystem",
     desc: "Your ERP doesn't talk to your CRM. Your CRM doesn't talk to your support desk. We build the integration layer that turns disconnected systems into a single operational intelligence platform.",
     icon: PlugZap,
-    img: "assets/images/home/home14-lg.jpg",
+    img: "/images/home/home14-lg.jpg",
   },
   {
     title: "SaaS Product Engineering & Launch",
     desc: "We've taken products from wireframe to paying customers in under 120 days. Multi-tenant, usage-metered, subscription-ready — with investor-grade architecture documentation included.",
     icon: Workflow,
-    img: "assets/images/home/home8.jpg",
+    img: "/images/home/home8.jpg",
   },
   {
     title: "Mission-Critical Support & AMC Programs",
     desc: "When your system goes down at 2 AM before a government deadline, you need a partner with a 4-hour response SLA — not a ticketing queue. Our AMC clients average 99.7% uptime across 36 consecutive months.",
     icon: Cog,
-    img: "assets/images/home/home9.jpg",
+    img: "/images/home/home9.jpg",
   },
 ];
 
@@ -159,24 +159,45 @@ const brandStoryPillars = [
     headline: "Build and modernize systems that matter.",
     desc: "We design, build, modernize, and support enterprise software for organizations that need operational clarity, secure systems, and delivery discipline.",
     icon: Layers3,
+    image: "/images/home/what-we-do.jpg",
+    alt: "Software engineers collaborating around a workstation",
     accent:
       "Execution-first delivery for platforms, integrations, cloud migration, and digital modernization.",
+    points: [
+      "Enterprise platform engineering",
+      "Legacy modernization and integrations",
+      "Cloud, DevOps, and managed support",
+    ],
   },
   {
     title: "Who We Are",
     headline: "An accountable software partner.",
     desc: "We are a software company focused on business-critical systems across India and Saudi Arabia, working as a practical engineering partner rather than a staff-augmentation vendor.",
     icon: Users,
+    image: "/images/home/who-we-are.jpg",
+    alt: "Technology leadership team in a strategy meeting",
     accent:
       "Small senior teams, direct accountability, and a bias for long-term client trust.",
+    points: [
+      "Senior product and engineering ownership",
+      "Business-first problem solving",
+      "Cross-market experience in India and KSA",
+    ],
   },
   {
     title: "How We Do",
     headline: "Structured delivery without noise.",
     desc: "We start with business diagnosis, convert ambiguity into architecture, and run delivery with measurable checkpoints, transparent reporting, and named ownership.",
     icon: Workflow,
+    image: "/images/home/how-we-do.jpg",
+    alt: "Product planning board with workflow and delivery planning",
     accent:
       "Discovery, blueprinting, controlled execution, and outcome tracking from day one.",
+    points: [
+      "Discovery and architecture before build",
+      "Named teams and milestone governance",
+      "Transparent reporting with measurable outcomes",
+    ],
   },
 ];
 
@@ -185,42 +206,42 @@ const flagshipSolutions = [
     title: "Travel & Booking Systems",
     microCopy: "Multi-currency · Multi-region · Multi-channel",
     desc: "Reduce booking drop-off and operational errors. End-to-end reservation systems with real-time inventory, dynamic pricing hooks, and agent workflow automation — built for operators at scale.",
-    img: "assets/images/home/travel-n-booking.jpg",
+    img: "/images/home/travel-n-booking.jpg",
     outcome: "60% error drop · 2K+ txns/day",
   },
   {
     title: "Fleet Management",
     microCopy: "GPS · Predictive Maintenance · Fuel Analytics",
     desc: "Know where every asset is. Control every cost. Real-time dispatch, predictive maintenance scheduling, and fuel-efficiency reporting — one screen, one source of truth for 500+ vehicle fleets.",
-    img: "assets/images/home/fleet-mgmt.jpg",
+    img: "/images/home/fleet-mgmt.jpg",
     outcome: "40% OpEx cut · 500 vehicles",
   },
   {
     title: "Restaurant Management",
     microCopy: "POS · Kitchen Display · Branch P&L",
     desc: "Run multiple branches like one tight operation. Centralized menu management, POS integration, kitchen display systems, and branch-level P&L visibility — from a single dashboard.",
-    img: "assets/images/home/restaurant-mgmt.jpg",
+    img: "/images/home/restaurant-mgmt.jpg",
     outcome: "35% faster throughput · 20+ branches",
   },
   {
     title: "HR & Manpower ERP",
     microCopy: "Biometric · Payroll · Compliance · Onboarding",
     desc: "From hire to retire — with zero paperwork. Full-cycle HR automation: onboarding, biometric attendance, payroll computation, and compliance-ready document management for 1,200+ employee headcounts.",
-    img: "assets/images/home/hr-manpower.jpg",
+    img: "/images/home/hr-manpower.jpg",
     outcome: "Zero payroll errors · 1,200+ staff",
   },
   {
     title: "Educational ERP",
     microCopy: "Admissions · Timetabling · Parent Comms",
     desc: "Give every stakeholder a single source of truth. Admissions, timetables, attendance, grades, and parent communications unified in one governed platform. Deployed in 3 institutions.",
-    img: "assets/images/home/educational-erp.jpg",
+    img: "/images/home/educational-erp.jpg",
     outcome: "100% paperless · 3 institutions",
   },
   {
     title: "Construction ERP",
     microCopy: "BOQ · Subcontractors · Budget vs. Actual",
     desc: "Keep your project on time and on budget. BOQ tracking, subcontractor management, material procurement, and real-time budget vs. actual dashboards — deployed on $18M+ construction projects.",
-    img: "assets/images/home/constructionerp.jpg",
+    img: "/images/home/constructionerp.jpg",
     outcome: "$18M+ projects managed",
   },
 ];
@@ -321,8 +342,39 @@ export default function Home() {
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 
 function WhatWhoHowSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+
+  useEffect(() => {
+    const nodes =
+      sectionRef.current?.querySelectorAll<HTMLElement>("[data-story-index]");
+    if (!nodes || nodes.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const index = Number(entry.target.getAttribute("data-story-index"));
+          setVisibleItems((current) =>
+            current.includes(index) ? current : [...current, index],
+          );
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.3, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="section-pad bg-surface-50">
+    <div ref={sectionRef} className="section-pad bg-surface-50">
       <div className="container-xl">
         <div className="mb-12 max-w-3xl">
           <span className="section-tag">What, Who, How</span>
@@ -338,30 +390,70 @@ function WhatWhoHowSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <div className="space-y-8 lg:space-y-12">
           {brandStoryPillars.map(
-            ({ title, headline, desc, icon: Icon, accent }) => (
+            ({ title, headline, desc, icon: Icon, accent, image, alt, points }, index) => (
               <article
                 key={title}
-                className="group relative overflow-hidden rounded-2xl border border-surface-200 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-crimson/20 hover:shadow-hover"
+                data-story-index={index}
+                className={`grid grid-cols-1 overflow-hidden rounded-[2rem] border border-surface-200 bg-white shadow-card transition-all duration-700 lg:grid-cols-2 ${
+                  visibleItems.includes(index)
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                }`}
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-crimson-gradient opacity-80" />
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-crimson/15 bg-crimson/10">
-                  <Icon size={20} className="text-crimson" />
+                <div
+                  className={`relative min-h-[280px] overflow-hidden lg:min-h-[420px] ${
+                    index % 2 === 1 ? "lg:order-1" : ""
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={alt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-charcoal/70 via-charcoal/25 to-transparent" />
+                  <div className="absolute left-6 top-6 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+                    {title}
+                  </div>
                 </div>
-                <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-crimson">
-                  {title}
-                </p>
-                <p className="mb-4 text-xl font-bold leading-snug text-charcoal">
-                  {headline}
-                </p>
-                <p className="mb-5 text-base leading-relaxed text-surface-600">
-                  {desc}
-                </p>
-                <div className="rounded-xl border border-surface-200 bg-surface-50 px-4 py-3">
-                  <p className="text-sm font-medium leading-relaxed text-surface-700">
-                    {accent}
+
+                <div
+                  className={`flex flex-col justify-center p-7 sm:p-10 ${
+                    index % 2 === 1 ? "lg:order-2" : ""
+                  }`}
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-crimson/15 bg-crimson/10">
+                    <Icon size={20} className="text-crimson" />
+                  </div>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-crimson">
+                    {title}
                   </p>
+                  <p className="mb-4 text-xl font-bold leading-snug text-charcoal sm:text-[1.95rem]">
+                    {headline}
+                  </p>
+                  <p className="mb-5 text-base leading-relaxed text-surface-600">
+                    {desc}
+                  </p>
+                  <div className="mb-5 rounded-xl border border-surface-200 bg-surface-50 px-4 py-3">
+                    <p className="text-sm font-medium leading-relaxed text-surface-700">
+                      {accent}
+                    </p>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-start gap-3 text-sm leading-relaxed text-surface-700"
+                      >
+                        <CheckCircle2
+                          size={16}
+                          className="mt-0.5 shrink-0 text-crimson"
+                        />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </article>
             ),
@@ -1135,7 +1227,7 @@ function TestimonialsSection() {
 function GlobalPresenceSection() {
   const presenceData = [
     {
-      flagSrc: "assets/images/flags/in.png",
+      flagSrc: "/images/flags/in.png",
       flagAlt: "India flag",
       country: "India",
       role: "Engineering Center of Excellence",
@@ -1147,7 +1239,7 @@ function GlobalPresenceSection() {
       ],
     },
     {
-      flagSrc: "assets/images/flags/sa.webp",
+      flagSrc: "/images/flags/sa.webp",
       flagAlt: "Saudi Arabia flag",
       country: "Saudi Arabia",
       role: "In-Country Delivery & Stakeholder Management",
@@ -1269,3 +1361,6 @@ function FinalCallToAction() {
     </div>
   );
 }
+
+
+

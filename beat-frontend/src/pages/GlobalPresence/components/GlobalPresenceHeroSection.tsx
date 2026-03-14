@@ -7,7 +7,7 @@ const GlobalPresenceHeroSection = () => {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom"
-        style={{ backgroundImage: "url('assets/images/industry/giga.jpg')" }}
+        style={{ backgroundImage: "url('/images/industry/giga.jpg')" }}
       />
 
       {/* Layered overlays */}
@@ -74,3 +74,6 @@ const GlobalPresenceHeroSection = () => {
 };
 
 export default GlobalPresenceHeroSection;
+
+
+

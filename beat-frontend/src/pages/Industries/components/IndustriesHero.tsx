@@ -66,7 +66,7 @@ function IndustriesHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom"
         style={{
-          backgroundImage: "url('assets/images/industry/automobile.avif')",
+          backgroundImage: "url('/images/industry/automobile.avif')",
         }}
       />
 
@@ -173,3 +173,6 @@ function IndustriesHero() {
 }
 
 export default IndustriesHero;
+
+
+

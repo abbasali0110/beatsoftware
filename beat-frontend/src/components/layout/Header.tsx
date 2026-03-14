@@ -27,12 +27,12 @@ const navLinks = [
 ];
 
 const regions = [
-  { label: "India", code: "IN", flag: "/assets/images/flags/in.png" },
-  { label: "Saudi Arabia", code: "SA", flag: "/assets/images/flags/sa.webp" },
-  { label: "UAE", code: "AE", flag: "/assets/images/flags/ae.png" },
-  { label: "Qatar", code: "QA", flag: "/assets/images/flags/qa.png" },
-  { label: "UK", code: "UK", flag: "/assets/images/flags/gb.png" },
-  { label: "USA", code: "US", flag: "/assets/images/flags/us.png" },
+  { label: "India", code: "IN", flag: "/images/flags/in.png" },
+  { label: "Saudi Arabia", code: "SA", flag: "/images/flags/sa.webp" },
+  { label: "UAE", code: "AE", flag: "/images/flags/ae.png" },
+  { label: "Qatar", code: "QA", flag: "/images/flags/qa.png" },
+  { label: "UK", code: "UK", flag: "/images/flags/gb.png" },
+  { label: "USA", code: "US", flag: "/images/flags/us.png" },
 ];
 
 const searchQuickLinks = [
@@ -124,7 +124,7 @@ export default function Header() {
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-crimson-gradient shadow-glow">
                 <img
-                  src="assets/images/logo/50.png"
+                  src="/images/logo/50.png"
                   alt="Beat Logo"
                   width={20}
                   height={20}
@@ -355,7 +355,10 @@ export default function Header() {
               </div>
 
               <div className="px-5 py-5 sm:px-6 sm:py-6">
-                <form onSubmit={handleSearch} className="flex items-center gap-3">
+                <form
+                  onSubmit={handleSearch}
+                  className="flex items-center gap-3"
+                >
                   <div className="flex flex-1 items-center gap-3 rounded-2xl border border-white/12 bg-white/5 px-4 py-3">
                     <Search size={18} className="shrink-0 text-crimson" />
                     <input
@@ -419,3 +422,4 @@ export default function Header() {
     </>
   );
 }
+

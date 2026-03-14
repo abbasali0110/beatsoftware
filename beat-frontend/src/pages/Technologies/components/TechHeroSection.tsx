@@ -6,7 +6,7 @@ const TechHeroSection = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom"
         style={{
-          backgroundImage: "url('assets/images/industry/giga.jpg')",
+          backgroundImage: "url('/images/industry/giga.jpg')",
         }}
       />
 
@@ -55,3 +55,6 @@ const TechHeroSection = () => {
 };
 
 export default TechHeroSection;
+
+
+

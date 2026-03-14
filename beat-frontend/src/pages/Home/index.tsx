@@ -5,6 +5,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import {
   ArrowRight,
   BadgeCheck,
+  Brain,
   Briefcase,
   Check,
   CheckCircle2,
@@ -12,6 +13,7 @@ import {
   Cloud,
   Code2,
   Cog,
+  Database,
   Download,
   GitBranch,
   Globe,
@@ -201,6 +203,45 @@ const brandStoryPillars = [
   },
 ];
 
+const expertiseAreas = [
+  {
+    number: "01",
+    title: "AI & Automation",
+    desc: "Transform your operational foundation with intelligent automation. We leverage RPA and advanced machine learning to eliminate manual constraints, enabling predictive workflows and rapid, data-backed decision-making at scale.",
+    icon: Brain,
+  },
+  {
+    number: "02",
+    title: "Cloud Offerings",
+    desc: "Scalable, secure, and resilient cloud infrastructure. We deliver managed cloud architectures and outcome-driven modernization strategies that ensure high availability, compliance, and continuous delivery for enterprise workloads.",
+    icon: Cloud,
+  },
+  {
+    number: "03",
+    title: "Digital Transformation",
+    desc: "Move beyond legacy constraints. We engineer intelligent, future-proof digital ecosystems that modernize core operations and fundamentally elevate the experience of your customers, employees, and stakeholders.",
+    icon: Globe,
+  },
+  {
+    number: "04",
+    title: "Data & Analytics",
+    desc: "Turn fragmented data into operational intelligence. We build robust data pipelines and analytics platforms that process high-volume information, uncovering behavioral trends to drive strategic, outcome-focused business decisions.",
+    icon: Database,
+  },
+  {
+    number: "05",
+    title: "Enterprise Security",
+    desc: "Security by architecture, not afterthought. We implement comprehensive protection from application to endpoint, featuring proactive threat detection, rigorous compliance governance, and rapid remediation across hybrid environments.",
+    icon: ShieldCheck,
+  },
+  {
+    number: "06",
+    title: "Business Process Management",
+    desc: "Streamline and govern complex operations. We deliver holistic Business Process Management (BPM) solutions that optimize workflows, enforce delivery discipline, and establish 360° operational visibility across your enterprise.",
+    icon: Workflow,
+  },
+];
+
 const flagshipSolutions = [
   {
     title: "Travel & Booking Systems",
@@ -324,6 +365,8 @@ export default function Home() {
       {/* <ClientLogoStrip /> */}
       {/* <HighlightsBar /> */}
       <CorporateOverview />
+      <OurExpertiseSection />
+
       <WhatWhoHowSection />
       <StrategicConsultingSection />
       <ServicesSnapshot />
@@ -343,40 +386,40 @@ export default function Home() {
 
 function WhatWhoHowSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionSteps = brandStoryPillars.length;
 
   useEffect(() => {
-    const nodes =
-      sectionRef.current?.querySelectorAll<HTMLElement>("[data-story-index]");
-    if (!nodes || nodes.length === 0) {
-      return;
-    }
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const totalScrollable = Math.max(
+        section.offsetHeight - window.innerHeight,
+        1,
+      );
+      const distanceScrolled = Math.min(
+        Math.max(-rect.top, 0),
+        totalScrollable,
+      );
+      const progress = distanceScrolled / totalScrollable;
+      const scaledProgress = progress * (sectionSteps - 1);
+      setActiveIndex(Math.min(sectionSteps - 1, Math.round(scaledProgress)));
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          const index = Number(entry.target.getAttribute("data-story-index"));
-          setVisibleItems((current) =>
-            current.includes(index) ? current : [...current, index],
-          );
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.3, rootMargin: "0px 0px -8% 0px" },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [sectionSteps]);
 
   return (
-    <div ref={sectionRef} className="section-pad bg-surface-50">
-      <div className="container-xl">
-        <div className="mb-12 max-w-3xl">
+    <div className="bg-surface-50 pt-20">
+      <div className="container-xl mb-10">
+        <div className="max-w-3xl">
           <span className="section-tag">What, Who, How</span>
           <h2 className="section-title">
             What we build, who we work as, and{" "}
@@ -389,75 +432,189 @@ function WhatWhoHowSection() {
             rigor, and delivery ownership in one team.
           </p>
         </div>
+      </div>
 
-        <div className="space-y-8 lg:space-y-12">
-          {brandStoryPillars.map(
-            ({ title, headline, desc, icon: Icon, accent, image, alt, points }, index) => (
-              <article
-                key={title}
-                data-story-index={index}
-                className={`grid grid-cols-1 overflow-hidden rounded-[2rem] border border-surface-200 bg-white shadow-card transition-all duration-700 lg:grid-cols-2 ${
-                  visibleItems.includes(index)
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                <div
-                  className={`relative min-h-[280px] overflow-hidden lg:min-h-[420px] ${
-                    index % 2 === 1 ? "lg:order-1" : ""
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={alt}
-                    className="absolute inset-0 h-full w-full object-cover"
+      <div
+        ref={sectionRef}
+        className="relative"
+        style={{ height: `${sectionSteps * 60}svh` }}
+      >
+        <div className="sticky top-[72px] h-[calc(100svh-72px)] flex items-center">
+          <div className="container-xl w-full">
+            {/* ── Card shell ── */}
+            <div className="relative h-[min(80vh,700px)] w-full overflow-hidden rounded-[2rem] shadow-2xl">
+              {/* ── Step nav — right edge overlay ── */}
+              <div className="pointer-events-none absolute right-5 top-1/2 z-30 flex -translate-y-1/2 flex-col gap-3">
+                {brandStoryPillars.map((p, i) => (
+                  <span
+                    key={p.title}
+                    className={`block rounded-full transition-all duration-500 ${
+                      i === activeIndex
+                        ? "h-8 w-1.5 bg-crimson"
+                        : i < activeIndex
+                          ? "h-3 w-1 bg-white/50"
+                          : "h-3 w-1 bg-white/25"
+                    }`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-charcoal/70 via-charcoal/25 to-transparent" />
-                  <div className="absolute left-6 top-6 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
-                    {title}
-                  </div>
-                </div>
+                ))}
+              </div>
 
-                <div
-                  className={`flex flex-col justify-center p-7 sm:p-10 ${
-                    index % 2 === 1 ? "lg:order-2" : ""
-                  }`}
-                >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-crimson/15 bg-crimson/10">
-                    <Icon size={20} className="text-crimson" />
-                  </div>
-                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-crimson">
-                    {title}
-                  </p>
-                  <p className="mb-4 text-xl font-bold leading-snug text-charcoal sm:text-[1.95rem]">
-                    {headline}
-                  </p>
-                  <p className="mb-5 text-base leading-relaxed text-surface-600">
-                    {desc}
-                  </p>
-                  <div className="mb-5 rounded-xl border border-surface-200 bg-surface-50 px-4 py-3">
-                    <p className="text-sm font-medium leading-relaxed text-surface-700">
-                      {accent}
-                    </p>
-                  </div>
-                  <ul className="space-y-2.5">
-                    {points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex items-start gap-3 text-sm leading-relaxed text-surface-700"
-                      >
-                        <CheckCircle2
-                          size={16}
-                          className="mt-0.5 shrink-0 text-crimson"
-                        />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+              {/* ── Progress badge — top-right ── */}
+              <div className="pointer-events-none absolute right-10 top-5 z-30 flex items-center gap-2 rounded-full border border-surface-200/70 bg-white/85 px-3 py-1.5 backdrop-blur-sm">
+                <div className="h-1 w-14 overflow-hidden rounded-full bg-surface-200">
+                  <div
+                    className="h-full rounded-full bg-crimson transition-[width] duration-500"
+                    style={{
+                      width: `${((activeIndex + 1) / sectionSteps) * 100}%`,
+                    }}
+                  />
                 </div>
-              </article>
-            ),
-          )}
+                <span className="text-[11px] font-bold tracking-[0.16em] text-surface-500">
+                  {String(activeIndex + 1).padStart(2, "0")}/
+                  {String(sectionSteps).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* ── Panels ── */}
+              {brandStoryPillars.map(
+                (
+                  {
+                    title,
+                    headline,
+                    desc,
+                    icon: Icon,
+                    accent,
+                    image,
+                    alt,
+                    points,
+                  },
+                  index,
+                ) => {
+                  const isPast = index < activeIndex;
+                  const isActive = index === activeIndex;
+                  const isFuture = index > activeIndex;
+
+                  return (
+                    <article
+                      key={title}
+                      aria-hidden={!isActive}
+                      className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2"
+                      style={{
+                        opacity: isActive ? 1 : 0,
+                        transform: isPast
+                          ? "translateY(-5rem) scale(0.96)"
+                          : isFuture
+                            ? "translateY(5rem) scale(0.96)"
+                            : "translateY(0) scale(1)",
+                        transition:
+                          "opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1)",
+                        pointerEvents: isActive ? "auto" : "none",
+                        zIndex: isActive ? 10 : 1,
+                      }}
+                    >
+                      {/* Image column */}
+                      <div
+                        className={`relative overflow-hidden ${index % 2 === 1 ? "lg:order-2" : ""}`}
+                      >
+                        <img
+                          src={image}
+                          alt={alt}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          style={{
+                            transform: isActive ? "scale(1.06)" : "scale(1)",
+                            transition:
+                              "transform 1.4s cubic-bezier(0.16,1,0.3,1)",
+                          }}
+                        />
+                        {/* Gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-charcoal/80 via-charcoal/35 to-transparent" />
+
+                        {/* Ghost step number */}
+                        <div
+                          className="pointer-events-none absolute -bottom-3 -right-2 select-none text-[9rem] font-black leading-none text-white/[0.07] sm:text-[11rem]"
+                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </div>
+
+                        {/* Top label pill */}
+                        <div className="absolute left-6 top-6 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+                          {title}
+                        </div>
+
+                        {/* Bottom step strips */}
+                        <div className="absolute bottom-5 left-6 flex items-center gap-1.5">
+                          {brandStoryPillars.map((_, i) => (
+                            <span
+                              key={i}
+                              className={`block h-[3px] rounded-full transition-all duration-500 ${
+                                i === activeIndex
+                                  ? "w-10 bg-crimson"
+                                  : i < activeIndex
+                                    ? "w-5 bg-white/55"
+                                    : "w-5 bg-white/22"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Content column */}
+                      <div
+                        className={`flex flex-col justify-center overflow-y-auto bg-white p-8 sm:p-10 lg:p-12 ${
+                          index % 2 === 1 ? "lg:order-1" : ""
+                        }`}
+                      >
+                        {/* Step counter row */}
+                        <div className="mb-6 flex items-center gap-3">
+                          <span className="text-[11px] font-black tracking-[0.22em] text-surface-300">
+                            {String(index + 1).padStart(2, "0")} /{" "}
+                            {String(sectionSteps).padStart(2, "0")}
+                          </span>
+                          <span className="h-px w-10 bg-surface-150" />
+                          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-crimson/15 bg-crimson/10">
+                            <Icon size={18} className="text-crimson" />
+                          </div>
+                        </div>
+
+                        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-crimson">
+                          {title}
+                        </p>
+                        <h3 className="mb-4 text-xl font-bold leading-tight text-charcoal sm:text-[1.85rem]">
+                          {headline}
+                        </h3>
+                        <p className="mb-5 text-[0.9375rem] leading-relaxed text-surface-600">
+                          {desc}
+                        </p>
+
+                        {/* Accent box — left border style */}
+                        <div className="mb-5 rounded-r-xl border-l-2 border-crimson bg-surface-50 py-3 pl-4 pr-4">
+                          <p className="text-sm font-medium leading-relaxed text-surface-700">
+                            {accent}
+                          </p>
+                        </div>
+
+                        <ul className="space-y-2.5">
+                          {points.map((point) => (
+                            <li
+                              key={point}
+                              className="flex items-start gap-3 text-sm leading-relaxed text-surface-700"
+                            >
+                              <CheckCircle2
+                                size={15}
+                                className="mt-0.5 shrink-0 text-crimson"
+                              />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </article>
+                  );
+                },
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -751,6 +908,67 @@ function StrategicConsultingSection() {
             <Download size={15} />
             Download: How We Run a Pre-Build Audit
           </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── OUR EXPERTISE ────────────────────────────────────────────────────────────
+
+function OurExpertiseSection() {
+  return (
+    <div className="section-pad bg-charcoal">
+      <div className="container-xl">
+        {/* ── Split header ── */}
+        <div className="mb-12 grid grid-cols-1 items-end gap-6 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <span className="section-tag">Our Expertise</span>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Precision-Driven Technology{" "}
+              <span className="text-crimson">For Complex Challenges.</span>
+            </h2>
+          </div>
+          <p className="text-base leading-relaxed text-surface-400 sm:text-lg lg:text-right">
+            We engineer precision-driven technology solutions designed to solve
+            complex operational challenges and deliver measurable business
+            outcomes.
+          </p>
+        </div>
+
+        {/* ── Cards grid ── */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {expertiseAreas.map(({ number, title, desc, icon: Icon }) => (
+            <article
+              key={title}
+              className="group relative overflow-hidden rounded-2xl border border-white/[0.07] p-7 transition-all duration-300 hover:border-crimson/30"
+              style={{
+                background:
+                  "linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+              }}
+            >
+              {/* Top glow line on hover */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-crimson/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              {/* Ghost step number */}
+              <div
+                className="pointer-events-none absolute right-5 top-4 select-none text-[4.5rem] font-black leading-none text-white/[0.045]"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                {number}
+              </div>
+
+              {/* Icon */}
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-crimson/20 bg-crimson/10 transition-all duration-300 group-hover:border-crimson/35 group-hover:bg-crimson/[0.18]">
+                <Icon size={20} className="text-crimson" />
+              </div>
+
+              <h3 className="mb-3 text-[1.0625rem] font-bold text-white">
+                {title}
+              </h3>
+              <p className="text-sm leading-relaxed text-surface-400">{desc}</p>
+            </article>
+          ))}
         </div>
       </div>
     </div>
@@ -1361,6 +1579,3 @@ function FinalCallToAction() {
     </div>
   );
 }
-
-
-

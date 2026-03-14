@@ -153,6 +153,33 @@ const deliverySteps = [
   },
 ];
 
+const brandStoryPillars = [
+  {
+    title: "What We Do",
+    headline: "Build and modernize systems that matter.",
+    desc: "We design, build, modernize, and support enterprise software for organizations that need operational clarity, secure systems, and delivery discipline.",
+    icon: Layers3,
+    accent:
+      "Execution-first delivery for platforms, integrations, cloud migration, and digital modernization.",
+  },
+  {
+    title: "Who We Are",
+    headline: "An accountable software partner.",
+    desc: "We are a software company focused on business-critical systems across India and Saudi Arabia, working as a practical engineering partner rather than a staff-augmentation vendor.",
+    icon: Users,
+    accent:
+      "Small senior teams, direct accountability, and a bias for long-term client trust.",
+  },
+  {
+    title: "How We Do",
+    headline: "Structured delivery without noise.",
+    desc: "We start with business diagnosis, convert ambiguity into architecture, and run delivery with measurable checkpoints, transparent reporting, and named ownership.",
+    icon: Workflow,
+    accent:
+      "Discovery, blueprinting, controlled execution, and outcome tracking from day one.",
+  },
+];
+
 const flagshipSolutions = [
   {
     title: "Travel & Booking Systems",
@@ -273,9 +300,10 @@ export default function Home() {
   return (
     <section className="bg-white">
       <HeroSection />
-      <ClientLogoStrip />
-      <HighlightsBar />
+      {/* <ClientLogoStrip /> */}
+      {/* <HighlightsBar /> */}
       <CorporateOverview />
+      <WhatWhoHowSection />
       <StrategicConsultingSection />
       <ServicesSnapshot />
       <DeliveryEngineSection />
@@ -291,6 +319,58 @@ export default function Home() {
 }
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
+
+function WhatWhoHowSection() {
+  return (
+    <div className="section-pad bg-surface-50">
+      <div className="container-xl">
+        <div className="mb-12 max-w-3xl">
+          <span className="section-tag">What, Who, How</span>
+          <h2 className="section-title">
+            What we build, who we work as, and{" "}
+            <span className="text-crimson">how we deliver it.</span>
+          </h2>
+          <p className="section-desc max-w-2xl">
+            Beat Software helps enterprises move from unclear technology
+            initiatives to systems that are governed, scalable, and ready for
+            real operating pressure. We combine product thinking, architecture
+            rigor, and delivery ownership in one team.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {brandStoryPillars.map(
+            ({ title, headline, desc, icon: Icon, accent }) => (
+              <article
+                key={title}
+                className="group relative overflow-hidden rounded-2xl border border-surface-200 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-crimson/20 hover:shadow-hover"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-crimson-gradient opacity-80" />
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-crimson/15 bg-crimson/10">
+                  <Icon size={20} className="text-crimson" />
+                </div>
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-crimson">
+                  {title}
+                </p>
+                <p className="mb-4 text-xl font-bold leading-snug text-charcoal">
+                  {headline}
+                </p>
+                <p className="mb-5 text-base leading-relaxed text-surface-600">
+                  {desc}
+                </p>
+                <div className="rounded-xl border border-surface-200 bg-surface-50 px-4 py-3">
+                  <p className="text-sm font-medium leading-relaxed text-surface-700">
+                    {accent}
+                  </p>
+                </div>
+              </article>
+            ),
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function HeroSection() {
   return (
@@ -397,9 +477,7 @@ function ClientLogoStrip() {
                 {type}
               </span>
               <span className="w-px h-3 bg-surface-200" />
-              <span className="text-sm font-bold text-crimson">
-                {region}
-              </span>
+              <span className="text-sm font-bold text-crimson">{region}</span>
             </div>
           ))}
         </div>
@@ -495,7 +573,10 @@ function CorporateOverview() {
             decision. Every delivery is measured against the outcome we agreed
             on in week one.
           </p>
-          <Link to="/resources/delivery-standards-brief" className="btn-ghost-crimson">
+          <Link
+            to="/resources/delivery-standards-brief"
+            className="btn-ghost-crimson"
+          >
             <Download size={15} />
             Download Our Delivery Standards Brief
           </Link>
@@ -563,7 +644,9 @@ function StrategicConsultingSection() {
                 />
               </div>
               <h3 className="text-xl font-bold text-charcoal mb-2">{title}</h3>
-              <p className="text-surface-600 text-base font-medium leading-relaxed">{desc}</p>
+              <p className="text-surface-600 text-base font-medium leading-relaxed">
+                {desc}
+              </p>
             </article>
           ))}
         </div>
@@ -680,7 +763,9 @@ function DeliveryEngineSection() {
                 </div>
               </div>
               <h3 className="text-white text-xl font-bold mb-2">{title}</h3>
-              <p className="text-surface-300 text-base font-medium leading-relaxed">{desc}</p>
+              <p className="text-surface-300 text-base font-medium leading-relaxed">
+                {desc}
+              </p>
             </article>
           ))}
         </div>
@@ -756,7 +841,10 @@ function SolutionsSnapshot() {
           <Link to="/portfolio" className="btn-primary">
             See How We Cut Fleet OpEx by 40% <ArrowRight size={16} />
           </Link>
-          <Link to="/resources/domain-solution-profiles" className="btn-outline">
+          <Link
+            to="/resources/domain-solution-profiles"
+            className="btn-outline"
+          >
             <Download size={15} />
             Download Our Domain Solution Profiles
           </Link>
@@ -822,9 +910,7 @@ function SocialProofSection() {
               <p className="text-4xl sm:text-5xl font-extrabold text-crimson font-display mb-2">
                 {value}
               </p>
-              <p className="text-charcoal text-base font-bold mb-1">
-                {label}
-              </p>
+              <p className="text-charcoal text-base font-bold mb-1">{label}</p>
               <p className="text-surface-500 text-sm font-medium">{context}</p>
             </div>
           ))}
@@ -893,7 +979,9 @@ function WhyBeatSection() {
                 <Icon size={20} className="text-crimson" />
               </div>
               <h3 className="text-white text-lg font-bold mb-2">{title}</h3>
-              <p className="text-surface-300 text-base font-medium leading-relaxed">{desc}</p>
+              <p className="text-surface-300 text-base font-medium leading-relaxed">
+                {desc}
+              </p>
             </article>
           ))}
         </div>
@@ -966,7 +1054,10 @@ function TechStackSection() {
                 team capability, time-to-market, and long-term maintainability.
               </p>
             </div>
-            <Link to="/resources/tech-stack-playbook" className="btn-outline shrink-0">
+            <Link
+              to="/resources/tech-stack-playbook"
+              className="btn-outline shrink-0"
+            >
               <Download size={15} />
               Download Our Tech Stack Playbook
             </Link>
@@ -1110,7 +1201,10 @@ function GlobalPresenceSection() {
                     key={point}
                     className="flex items-center gap-2.5 text-base font-medium text-surface-600"
                   >
-                    <MapPin size={15} className="text-crimson shrink-0 mt-0.5" />
+                    <MapPin
+                      size={15}
+                      className="text-crimson shrink-0 mt-0.5"
+                    />
                     {point}
                   </li>
                 ))}
@@ -1123,7 +1217,10 @@ function GlobalPresenceSection() {
           <Link to="/contact" className="btn-primary">
             Book a Meeting at Our Riyadh Office <ArrowRight size={16} />
           </Link>
-          <Link to="/resources/india-ksa-delivery-model" className="btn-outline">
+          <Link
+            to="/resources/india-ksa-delivery-model"
+            className="btn-outline"
+          >
             <Download size={15} />
             Download India–KSA Delivery Model
           </Link>

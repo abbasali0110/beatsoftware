@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ArrowRight, ChevronDown, Globe, Menu, Search, X } from "lucide-react";
 import MobileNav from "./MobileNav";
@@ -35,6 +35,20 @@ const regions = [
   { label: "USA", code: "US", flag: "/assets/images/flags/us.png" },
 ];
 
+const searchQuickLinks = [
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "Insights", to: "/insights" },
+  { label: "Global Presence", to: "/global-presence" },
+  { label: "Contact Us", to: "/contact" },
+];
+
+const searchSuggestions = [
+  "Compliance architecture",
+  "Case studies",
+  "KSA delivery",
+  "Enterprise modernization",
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -68,6 +82,7 @@ export default function Header() {
     const onEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMoreOpen(false);
+        setSearchOpen(false);
         setRegionOpen(false);
       }
     };
@@ -98,16 +113,16 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300  ${headerClass}`}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerClass}`}
       >
         <div className="container-xl">
-          <div className="h-[72px] flex items-center gap-4">
+          <div className="flex h-[72px] items-center gap-4">
             <NavLink
               to="/home"
-              className="flex items-center gap-3 shrink-0"
+              className="flex shrink-0 items-center gap-3"
               aria-label="Beat Home"
             >
-              <div className="w-10 h-10 rounded-xl bg-crimson-gradient shadow-glow flex items-center justify-center">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-crimson-gradient shadow-glow">
                 <img
                   src="assets/images/logo/50.png"
                   alt="Beat Logo"
@@ -115,34 +130,38 @@ export default function Header() {
                   height={20}
                 />
               </div>
-              <div className="leading-none hidden sm:block">
+              <div className="hidden leading-none sm:block">
                 <p
-                  className={`text-lg font-extrabold tracking-[0.28em] ${scrolled ? "text-charcoal" : "text-white"}`}
+                  className={`text-lg font-extrabold tracking-[0.28em] ${
+                    scrolled ? "text-charcoal" : "text-white"
+                  }`}
                 >
                   BEAT
                 </p>
                 <p
-                  className={`text-[11px] tracking-[0.12em] ${scrolled ? "text-surface-500" : "text-white/70"}`}
+                  className={`text-[11px] tracking-[0.12em] ${
+                    scrolled ? "text-surface-500" : "text-white/70"
+                  }`}
                 >
                   SOFTWARE COMPANY
                 </p>
               </div>
             </NavLink>
 
-            <nav className="hidden lg:flex items-center gap-1 ml-1 flex-1">
+            <nav className="ml-1 hidden flex-1 items-center gap-1 lg:flex">
               {primaryLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) =>
-                    `px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                    `rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                       isActive
                         ? scrolled
-                          ? "text-crimson bg-crimson/10"
-                          : "text-white bg-white/15"
+                          ? "bg-crimson/10 text-crimson"
+                          : "bg-white/15 text-white"
                         : scrolled
-                          ? "text-surface-600 hover:text-charcoal hover:bg-surface-100"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
+                          ? "text-surface-600 hover:bg-surface-100 hover:text-charcoal"
+                          : "text-white/80 hover:bg-white/10 hover:text-white"
                     }`
                   }
                 >
@@ -160,22 +179,24 @@ export default function Header() {
                   type="button"
                   onClick={() => setMoreOpen((prev) => !prev)}
                   onFocus={() => setMoreOpen(true)}
-                  className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                  className={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                     scrolled
-                      ? "text-surface-600 hover:text-charcoal hover:bg-surface-100"
-                      : "text-white/80 hover:text-white hover:bg-white/10"
+                      ? "text-surface-600 hover:bg-surface-100 hover:text-charcoal"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   More
                   <ChevronDown
                     size={14}
-                    className={`transition-transform ${moreOpen ? "rotate-180" : ""}`}
+                    className={`transition-transform ${
+                      moreOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
 
                 {moreOpen && (
-                  <div className="absolute top-full right-0 w-64 pt-2 z-50">
-                    <div className="rounded-xl border border-surface-200 bg-white shadow-hover py-2">
+                  <div className="absolute right-0 top-full z-50 w-64 pt-2">
+                    <div className="rounded-xl border border-surface-200 bg-white py-2 shadow-hover">
                       {secondaryLinks.map((link) => (
                         <NavLink
                           key={link.to}
@@ -184,7 +205,7 @@ export default function Header() {
                           className={({ isActive }) =>
                             `block px-4 py-2 text-sm transition-colors ${
                               isActive
-                                ? "text-crimson bg-crimson/10 font-semibold"
+                                ? "bg-crimson/10 font-semibold text-crimson"
                                 : "text-surface-700 hover:bg-surface-50 hover:text-charcoal"
                             }`
                           }
@@ -198,47 +219,9 @@ export default function Header() {
               </div>
             </nav>
 
-            <div className="hidden md:flex items-center">
-              {searchOpen ? (
-                <form onSubmit={handleSearch} className="flex items-center">
-                  <input
-                    autoFocus
-                    type="text"
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onBlur={() => !searchValue && setSearchOpen(false)}
-                    placeholder="Search pages"
-                    className={`w-44 text-sm py-2 px-3 rounded-l-xl border-y border-l focus:outline-none ${
-                      scrolled
-                        ? "border-surface-200 bg-white text-charcoal placeholder-surface-400"
-                        : "border-white/35 bg-white/10 text-white placeholder-white/60 backdrop-blur-sm"
-                    }`}
-                  />
-                  <button
-                    type="submit"
-                    className="bg-crimson text-white px-3 py-2 rounded-r-xl hover:bg-crimson-dark"
-                  >
-                    <Search size={15} />
-                  </button>
-                </form>
-              ) : (
-                <button
-                  onClick={() => setSearchOpen(true)}
-                  className={`p-2 rounded-lg transition-colors ${
-                    scrolled
-                      ? "text-surface-600 hover:text-charcoal hover:bg-surface-100"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-                  aria-label="Open search"
-                >
-                  <Search size={18} />
-                </button>
-              )}
-            </div>
-
             <NavLink
               to="/contact"
-              className="hidden lg:inline-flex h-10 items-center btn-primary"
+              className="hidden h-10 items-center lg:inline-flex btn-primary"
             >
               Contact Us <ArrowRight size={16} />
             </NavLink>
@@ -305,8 +288,22 @@ export default function Header() {
               )}
             </div>
 
+            <div className="hidden items-center md:flex">
+              <button
+                onClick={() => setSearchOpen(true)}
+                className={`rounded-lg p-2 transition-colors ${
+                  scrolled
+                    ? "text-surface-600 hover:bg-surface-100 hover:text-charcoal"
+                    : "text-white/70 hover:bg-white/10 hover:text-white"
+                }`}
+                aria-label="Open search"
+              >
+                <Search size={18} />
+              </button>
+            </div>
+
             <button
-              className={`lg:hidden p-2 rounded-lg transition-colors ${
+              className={`rounded-lg p-2 transition-colors lg:hidden ${
                 scrolled
                   ? "text-charcoal hover:bg-surface-100"
                   : "text-white hover:bg-white/10"
@@ -328,6 +325,96 @@ export default function Header() {
         selectedRegion={selectedRegion}
         onRegionChange={setSelectedRegion}
       />
+
+      {searchOpen && (
+        <div className="fixed inset-0 z-[70] bg-charcoal/45 backdrop-blur-sm">
+          <div
+            className="absolute inset-0"
+            onClick={() => setSearchOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto mt-24 w-[min(92vw,48rem)] px-4">
+            <div className="overflow-hidden rounded-3xl border border-white/12 bg-[#0b1222]/80 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-6">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-crimson">
+                    Search
+                  </p>
+                  <p className="mt-1 text-sm text-white/60">
+                    Find pages, services, and domain content.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSearchOpen(false)}
+                  className="rounded-lg p-2 text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+                  aria-label="Close search"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="px-5 py-5 sm:px-6 sm:py-6">
+                <form onSubmit={handleSearch} className="flex items-center gap-3">
+                  <div className="flex flex-1 items-center gap-3 rounded-2xl border border-white/12 bg-white/5 px-4 py-3">
+                    <Search size={18} className="shrink-0 text-crimson" />
+                    <input
+                      autoFocus
+                      type="text"
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                      placeholder="Search pages, services, markets..."
+                      className="w-full bg-transparent text-base text-white placeholder:text-white/40 focus:outline-none"
+                    />
+                  </div>
+                  <button type="submit" className="btn-primary h-12 shrink-0">
+                    Search
+                  </button>
+                </form>
+
+                <div className="mt-6 grid gap-5 sm:grid-cols-[1.3fr_0.9fr]">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
+                      Popular Searches
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {searchSuggestions.map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => setSearchValue(item)}
+                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/75 transition-colors hover:border-crimson/25 hover:text-white"
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
+                      Quick Links
+                    </p>
+                    <div className="mt-3 space-y-2">
+                      {searchQuickLinks.map((link) => (
+                        <NavLink
+                          key={link.to}
+                          to={link.to}
+                          onClick={() => setSearchOpen(false)}
+                          className="flex items-center justify-between rounded-xl px-3 py-2 text-sm text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                        >
+                          <span>{link.label}</span>
+                          <ArrowRight size={14} className="text-crimson" />
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {/* <div className="h-[72px]" /> */}
     </>
   );

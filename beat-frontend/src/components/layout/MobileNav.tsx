@@ -6,9 +6,9 @@ interface MobileNavProps {
   open: boolean;
   onClose: () => void;
   links: { label: string; to: string }[];
-  regions: { label: string; code: string; flag: string }[];
-  selectedRegion: { label: string; code: string; flag: string } | null;
-  onRegionChange: (region: {
+  regions?: { label: string; code: string; flag: string }[];
+  selectedRegion?: { label: string; code: string; flag: string } | null;
+  onRegionChange?: (region: {
     label: string;
     code: string;
     flag: string;
@@ -19,9 +19,9 @@ export default function MobileNav({
   open,
   onClose,
   links,
-  regions,
-  selectedRegion,
-  onRegionChange,
+  regions = [],
+  selectedRegion = null,
+  onRegionChange = () => {},
 }: MobileNavProps) {
   useEffect(() => {
     if (open) {
@@ -55,32 +55,34 @@ export default function MobileNav({
           </div>
 
           <nav className="p-4 space-y-1">
-            <div className="mb-4 rounded-xl border border-white/10 bg-white/5 p-3">
-              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">
-                Region
-              </p>
-              <div className="space-y-1">
-                {regions.map((region) => (
-                  <button
-                    key={region.code}
-                    type="button"
-                    onClick={() => onRegionChange(region)}
-                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
-                      selectedRegion?.code === region.code
-                        ? 'bg-crimson text-white'
-                        : 'text-white/75 hover:text-white hover:bg-white/10'
-                    }`}
-                  >
-                    <img
-                      src={region.flag}
-                      alt={`${region.label} flag`}
-                      className="h-4 w-6 rounded-[2px] object-cover"
-                    />
-                    <span>{region.label}</span>
-                  </button>
-                ))}
+            {regions.length > 0 && (
+              <div className="mb-4 rounded-xl border border-white/10 bg-white/5 p-3">
+                <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">
+                  Region
+                </p>
+                <div className="space-y-1">
+                  {regions.map((region) => (
+                    <button
+                      key={region.code}
+                      type="button"
+                      onClick={() => onRegionChange(region)}
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
+                        selectedRegion?.code === region.code
+                          ? 'bg-crimson text-white'
+                          : 'text-white/75 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <img
+                        src={region.flag}
+                        alt={`${region.label} flag`}
+                        className="h-4 w-6 rounded-[2px] object-cover"
+                      />
+                      <span>{region.label}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {links.map((link) => (
               <NavLink
